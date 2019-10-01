@@ -1,0 +1,37 @@
+{
+  "name": "ng-uikit-pro-standard",
+  "version": "8.3.1",
+  "files": [
+    "assets/**/*",
+    "bundles/**/*",
+    "esm5/**/*",
+    "esm2015/**/*",
+    "fesm5/**/*",
+    "fesm2015/**/*",
+    "lib/**/*",
+    ".gitignore",
+    "changelog",
+    "license.pdf",
+    "ng-uikit-pro-standard.d.ts",
+    "ng-uikit-pro-standard.metadata.json",
+    "package.json",
+    "public_api.d.ts"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  },
+  "main": "bundles/ng-uikit-pro-standard.umd.js",
+  "module": "fesm5/ng-uikit-pro-standard.js",
+  "es2015": "fesm2015/ng-uikit-pro-standard.js",
+  "esm5": "esm5/ng-uikit-pro-standard.js",
+  "esm2015": "esm2015/ng-uikit-pro-standard.js",
+  "fesm5": "fesm5/ng-uikit-pro-standard.js",
+  "fesm2015": "fesm2015/ng-uikit-pro-standard.js",
+  "typings": "ng-uikit-pro-standard.d.ts",
+  "metadata": "ng-uikit-pro-standard.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

@@ -28,6 +28,8 @@
               "src/assets"
             ],
             "styles": [
+              "ng-uikit-pro-standard/assets/scss/bootstrap/bootstrap.scss",
+              "ng-uikit-pro-standard/assets/scss/mdb.scss",
               "src/styles.scss"
             ],
             "scripts": []
