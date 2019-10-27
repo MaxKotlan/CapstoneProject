@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import send_from_directory
+from flask import request
 from werkzeug.routing import BaseConverter
 
 
@@ -13,10 +14,6 @@ class RegexConverter(BaseConverter):
 
 app.url_map.converters['regex'] = RegexConverter
 
-# @app.route("/")
-# def hello():
-#     return "Hello World!"
-
 @app.route("/")
 def angular():
     return send_from_directory("angular/dist/CapstoneProject", "index.html") 
@@ -25,9 +22,10 @@ def angular():
 def angular_src(path):
     return send_from_directory("angular/dist/CapstoneProject", path)
 
-@app.route("/hello")
-def hello():
-    return "Hello World!"
+@app.route("/text", methods=['GET'])
+def getText():
+    textId = request.args.get('id')
+    return "lorum ipsum test test twestalknoawelkf. Requested text: {}".format(textId)
 
 if __name__ == "__main__":
     app.run()
