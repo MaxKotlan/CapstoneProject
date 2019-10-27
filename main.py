@@ -3,7 +3,7 @@ from flask import send_from_directory
 from werkzeug.routing import BaseConverter
 
 
-app = Flask(__name__, static_url_path="", static_folder="angular/dist/")
+app = Flask(__name__, static_url_path="", static_folder="angular/dist/CapstoneProject")
 
 class RegexConverter(BaseConverter):
     def __init__(self, url_map, *items):
@@ -19,11 +19,11 @@ app.url_map.converters['regex'] = RegexConverter
 
 @app.route("/")
 def angular():
-    return send_from_directory("angular/dist", "index.html") 
+    return send_from_directory("angular/dist/CapstoneProject", "index.html") 
 
 @app.route("/<regex('\w\.(js|css)'):path>")
 def angular_src(path):
-    return send_from_directory("angular/dist", path)
+    return send_from_directory("angular/dist/CapstoneProject", path)
 
 @app.route("/hello")
 def hello():
