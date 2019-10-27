@@ -1,9 +1,9 @@
 
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light blue-grey lighten-5">
+<mdb-navbar SideClass="navbar navbar-expand-lg">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand" href="#">Dr. Ken Batcher</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
@@ -11,26 +11,10 @@
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-              <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+              <a class="nav-link waves-light" mdbWavesEffect>About<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect>Features</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
-          </li>
-
-          <!-- Dropdown -->
-          <li class="nav-item dropdown" dropdown>
-              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-              Basic dropdown<span class="caret"></span></a>
-              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
-                  <div class="divider dropdown-divider"></div>
-                  <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
-              </div>
+              <a class="nav-link waves-light" mdbWavesEffect>Doccuments</a>
           </li>
 
       </ul>
@@ -47,13 +31,27 @@
 
 </mdb-navbar>
 <!--/.Navbar-->
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
 
-
-<img class="img-responsive" src="assets/kenbatcher.png">
-
-
-<div>
-  In memory of Dr. Ken Batcher
+            <mdb-card>
+                <mdb-card-body>
+                
+                    <mdb-card-title>
+                    <h4>Card Title</h4>
+                    </mdb-card-title>
+                
+                    <mdb-card-text> Some quick example text to build on the card title and make up the bulk of the card's
+                    content.
+                    </mdb-card-text>
+                
+                    <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
 </div>
 
 <router-outlet></router-outlet>
