@@ -20,8 +20,9 @@ export class TextPostsComponent implements OnInit {
 
   ngOnInit() {
     this.posts = this.dataService.getAll();
-    this.k =  interval(1000).pipe(map(x => new Array<TextPost>( new TextPost(x, "test", "test", "test"))));
-    this.k.subscribe(x => console.log(x));
+    let j = [];
+    this.k =  interval(1000).pipe(map(x => {j.push(new TextPost(x, "test", "test", "test")); return j;}));
+    //this.k.subscribe(x => console.log(x));
   }
 
   ngOnDestroy(){
