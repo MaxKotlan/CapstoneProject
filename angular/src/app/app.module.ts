@@ -4,17 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { TextPostsComponent } from './components/text-posts/text-posts.component';
+import { DataService } from './services/data.service';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TextPostsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MDBBootstrapModulesPro.forRoot()
   ],
-  providers: [],
+  providers: [DataService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
