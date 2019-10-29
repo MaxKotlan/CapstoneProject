@@ -25,11 +25,10 @@ def angular_src(path):
 @app.route("/text", methods=['GET'])
 def getText():
     with sqlite3.connect("capstone-project.db") as conn:
-        textId = request.args.get('id')
         c = conn.cursor()
-        c.execute('SELECT * FROM text WHERE id=?', textId)
-        text = Text(*c.fetchone())
-        return jsonify(text.__dict__)
+        c.execute('SELECT * FROM text')
+        text = list((Text(*x).__dict__ for x in c.fetchmany()))
+        return jsonify(text)
 
 # @app.route("/text", methods=['POST'])
 # def saveText():
