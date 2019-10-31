@@ -1,9 +1,8 @@
 from flask import Flask, jsonify, send_from_directory, request
 from werkzeug.routing import BaseConverter
-import sqlite3
-from models.text import Text
 import json
 import datetime
+from database import *
 
 app = Flask(__name__, static_url_path="", static_folder="angular/dist/CapstoneProject")
 
@@ -25,11 +24,11 @@ def angular_src(path):
 
 @app.route("/text", methods=['GET'])
 def getText():
-    with sqlite3.connect("capstone-project.db") as conn:
-        c = conn.cursor()
-        c.execute('SELECT * FROM text')
-        text = list((Text(*x).__dict__ for x in c.fetchall()))
-        return jsonify(text)
+    with db_session:
+        all_text_result = select(t for t in Text)[:]
+        all_text_list = list(t.to_dict() for t in all_text_result)
+    
+    return jsonify(all_text_list)
 
 @app.route("/text", methods=['POST'])
 def saveText():
@@ -37,29 +36,19 @@ def saveText():
         abort(400)
 
     json = request.get_json()
-    currentTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     user = "Clay James"
 
-    updatedText = {
-        "newText": json["text"],
-        "lastUpdated": currentTime,
-        "lastUpdatedBy": user,
-        "id": json["id"]
-    }
+    with db_session:
+      to_update = Text.get(id=json['id'])
+      to_update.text = json['text']
+      to_update.lastUpdated = datetime.datetime.now()
+      to_update.lastUpdatedBy = user
+      commit()
 
-    with sqlite3.connect("capstone-project.db") as conn:
-        c = conn.cursor()
-        c.execute('''
-                    UPDATE text 
-                    set text = :newText,
-                        lastChanged = :lastUpdated,
-                        lastChangedBy = :lastUpdatedBy
-                    where id = :id
-                    ''', updatedText)
-        conn.commit()
-    
     return "success"
 
-
 if __name__ == "__main__":
+    with db_session:
+        if Text.select().first() is None:
+            populate_database()
     app.run()

@@ -46,4 +46,4 @@ testem.log
 Thumbs.db
 
 __pycache__
-*.db
+*.sqlite
