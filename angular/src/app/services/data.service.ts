@@ -8,13 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  private controllerUrl : string = "/";
+  private controllerUrl : string = "./";
 
   constructor(private http: HttpClient) { }
 
   public getAll() : Observable<Array<TextPost>>{
     const options = this.httpOptions();
-    var completeUrl : string = this.controllerUrl + "/all";
+    var completeUrl : string = this.controllerUrl + "text";
     return this.http.get<Array<TextPost>>(completeUrl, options);
   }
 

@@ -16,12 +16,10 @@ export class TextPostsComponent implements OnInit {
 
   posts : Observable<Array<TextPost>>;
   
-  k : Observable<Array<TextPost>>;
-
   ngOnInit() {
     this.posts = this.dataService.getAll();
-    let j = [];
-    this.k =  interval(1000).pipe(map(x => {j.push(new TextPost(x, "test", "test", "test")); return j;}));
+    //let j = [];
+    //this.k =  interval(1000).pipe(map(x => {j.push(new TextPost(x, "test", "test", "test")); return j;}));
     //this.k.subscribe(x => console.log(x));
   }
 
