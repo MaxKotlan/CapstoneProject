@@ -1,14 +1,11 @@
 
-<!--Navbar-->
+<!--
 <mdb-navbar SideClass="navbar navbar-expand-lg">
 
-  <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" href="#">Dr. Ken Batcher</a></mdb-navbar-brand>
 
-  <!-- Collapsible content -->
   <links>
 
-      <!-- Links -->
       <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
               <a class="nav-link waves-light" mdbWavesEffect>About<span class="sr-only">(current)</span></a>
@@ -16,21 +13,18 @@
           <li class="nav-item">
               <a class="nav-link waves-light" mdbWavesEffect>Doccuments</a>
           </li>
-
       </ul>
-      <!-- Links -->
-
-<!-- Search form -->
-      <form class="form-inline waves-light" mdbWavesEffect>
-          <div class="md-form my-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          </div>
-      </form>
   </links>
-  <!-- Collapsible content -->
 
+</mdb-navbar> -->
+
+<mdb-navbar SideClass="navbar navbar-expand-lg grey lighten-5 grey-text" mdbStickyHeader>
+    <mdb-navbar-brand><a class="navbar-brand grey-text" href="#">Dr. Ken Batcher Memorial Site</a></mdb-navbar-brand>
+    <mdb-navbar-brand class="nav-item"><a class="nav-link grey-text" href="#">About</a></mdb-navbar-brand>
+    <mdb-navbar-brand class="nav-item"><a class="nav-link grey-text" href="#">Works</a></mdb-navbar-brand>
 </mdb-navbar>
-<!--/.Navbar-->
+
+<br><br><br>
 <app-text-posts></app-text-posts>
 
 <router-outlet></router-outlet>
