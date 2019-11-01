@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TextPost } from '../models/model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private controllerUrl : string = "./";
+  private controllerUrl : string = environment.apiURL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { console.log(environment.apiURL) }
 
   public getAll() : Observable<Array<TextPost>>{
     const options = this.httpOptions();
