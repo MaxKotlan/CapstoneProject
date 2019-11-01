@@ -3,7 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { Observable, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { TextPost } from 'src/app/models/model';
+import { TextPost } from 'src/app/models/TextPost';
 
 @Component({
   selector: 'app-text-posts',
