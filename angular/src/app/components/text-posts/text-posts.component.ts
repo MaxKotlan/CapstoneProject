@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { Observable, interval } from 'rxjs';
 
 import { TextPost } from 'src/app/models/TextPost';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-text-posts',
@@ -11,8 +12,11 @@ import { TextPost } from 'src/app/models/TextPost';
 })
 export class TextPostsComponent {
 
-  constructor(private dataService : DataService) { }
+  constructor(
+    private loginService : LoginService,
+    private dataService  : DataService) { }
 
+  isLoggedIn : Observable<boolean> = this.loginService.isLoggedIn();
   posts : Observable<Array<TextPost>> = this.dataService.getAll();
 
 }

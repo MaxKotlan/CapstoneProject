@@ -12,7 +12,7 @@ export class AdminloginComponent implements OnInit {
   constructor(private loginService : LoginService) { }
 
   ngOnInit() {
-    this.loginService.login( new Login("Admin", "secret") );
+    this.loginService.login( new Login("Admin", "secret") ).subscribe(x => console.log(x));
   }
 
 }

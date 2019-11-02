@@ -5,7 +5,7 @@ import json
 import datetime
 from database import *
 
-app = Flask(__name__, static_url_path="", static_folder="angular/dist/CapstoneProject")
+app = Flask(__name__, static_folder="angular/dist/CapstoneProject")
 
 app.config['SECRET_KEY'] = 'yeet'
 
@@ -51,8 +51,9 @@ def Logout():
 def loadUser(userid):
     return User[userid]
 
-@app.route("/")
-def angular():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def angular(path):
     return send_from_directory("angular/dist/CapstoneProject", "index.html") 
 
 @app.route("/<regex('\w\.(js|css)'):path>")

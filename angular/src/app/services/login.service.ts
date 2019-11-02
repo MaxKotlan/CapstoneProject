@@ -4,6 +4,7 @@ import { TextPost } from '../models/TextPost';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Login } from '../models/Login';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,12 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
+  public isLoggedIn() : Observable<boolean>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "isLoggedIn";
+    return this.http.get<string>(completeUrl, options).pipe(map(x => (x == "true"))); 
+  }
+  
   public login(userlogin : Login) : Observable<string>{
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "login";
