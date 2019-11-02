@@ -11,7 +11,7 @@ export class DataService {
 
   private controllerUrl : string = environment.apiURL;
 
-  constructor(private http: HttpClient) { console.log(environment.apiURL) }
+  constructor(private http: HttpClient) { }
 
   public getAll() : Observable<Array<TextPost>>{
     const options = this.httpOptions();

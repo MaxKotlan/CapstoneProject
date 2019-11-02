@@ -70,6 +70,7 @@ def saveText():
 
     with db_session:
       to_update = Text.get(id=json['id'])
+      to_update.text = json['title']
       to_update.text = json['text']
       to_update.lastUpdated = datetime.datetime.now()
       to_update.lastUpdatedBy = current_user.username
