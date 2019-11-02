@@ -34,6 +34,13 @@ def Login():
     else:
         abort(403)
 
+@app.route('/isLoggedIn', methods=["GET"])
+def isLoggedIn():
+    if current_user.is_authenticated:
+        return "true"
+    else:
+        return "false"
+
 @app.route("/logout", methods=["GET"])
 def Logout():
     logout_user()
