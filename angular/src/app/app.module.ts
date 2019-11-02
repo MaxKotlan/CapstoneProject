@@ -8,12 +8,14 @@ import { TextPostsComponent } from './components/text-posts/text-posts.component
 import { DataService } from './services/data.service';
 import { LoginService } from './services/login.service';
 import { WorksComponent } from './components/works/works.component';
+import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TextPostsComponent,
-    WorksComponent
+    WorksComponent,
+    AdminloginComponent
   ],
   imports: [
     BrowserModule,
