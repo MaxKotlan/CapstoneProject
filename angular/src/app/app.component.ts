@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'CapstoneProject';
+  title = 'Dr. Kent Batcher';
+
+  links = [
+    {title: "Home", route: "/"},
+    {title: "Works", route: "/works"}
+  ]
 }

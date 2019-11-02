@@ -19,12 +19,15 @@
 </mdb-navbar> -->
 
 <mdb-navbar SideClass="navbar navbar-expand-lg grey lighten-5 grey-text" mdbStickyHeader>
-    <mdb-navbar-brand><a class="navbar-brand grey-text" href="#">Dr. Ken Batcher Memorial Site</a></mdb-navbar-brand>
-    <mdb-navbar-brand class="nav-item"><a class="nav-link grey-text" href="#">About</a></mdb-navbar-brand>
-    <mdb-navbar-brand class="nav-item"><a class="nav-link grey-text" href="#">Works</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand grey-text" href="#">{{title}}</a></mdb-navbar-brand>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li *ngFor="let link of links" 
+            class="nav-item active"><a class="nav-link waves-light" href={{link.route}} mdbWavesEffect>{{link.title}}</a></li>
+        </ul>
+    </links>
 </mdb-navbar>
 
 <br><br><br>
-<app-text-posts></app-text-posts>
 
 <router-outlet></router-outlet>

@@ -7,11 +7,13 @@ import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { TextPostsComponent } from './components/text-posts/text-posts.component';
 import { DataService } from './services/data.service';
 import { LoginService } from './services/login.service';
+import { WorksComponent } from './components/works/works.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TextPostsComponent
+    TextPostsComponent,
+    WorksComponent
   ],
   imports: [
     BrowserModule,
