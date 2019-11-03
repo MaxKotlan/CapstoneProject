@@ -5,18 +5,23 @@
             <mdb-card>
 
                 <mdb-card-header class="grey lighten-5 grey-text text-center py-4">
-                    <h5>
-                        <strong> {{post.title}} </strong>
-                    </h5>
+                    <div *ngIf="isLoggedIn; else notLoggedInTitle">
+                        <div class="md-form">
+                            <input mdbInput type="text" class="form-control" [(ngModel)]="post.title">
+                            <label for="form1" class="">Section Title</label>
+                        </div>
+                    </div>
+                    <ng-template #notLoggedInTitle>
+                        <h5><strong> {{post.title}} </strong></h5>
+                    </ng-template>
                 </mdb-card-header>
 
                 <mdb-card-body>
                     <div *ngIf="isLoggedIn; else notLoggedIn">
                         <div class="md-form">
-                            <textarea id="textarea-char-counter" class="form-control md-textarea"> {{post.text}} </textarea>
-                            <label for="textarea-char-counter">Edit Text</label>
+                            <textarea class="form-control md-textarea" [(ngModel)]=post.text> </textarea>
                         </div>
-                        <a href="#" mdbBtn color="primary-color-dark" mdbWavesEffect>Save</a>
+                        <a href="#" mdbBtn color="primary-color-dark" (click)="updateText(post)" mdbWavesEffect>Save</a>
                     </div>
                     <ng-template #notLoggedIn>
                         <mdb-card-text class="text-black-50"> {{post.text}}

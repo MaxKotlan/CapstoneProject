@@ -9,6 +9,7 @@ import { DataService } from './services/data.service';
 import { LoginService } from './services/login.service';
 import { WorksComponent } from './components/works/works.component';
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AdminloginComponent } from './components/adminlogin/adminlogin.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MDBBootstrapModulesPro.forRoot()
   ],
   providers: [DataService, LoginService],
