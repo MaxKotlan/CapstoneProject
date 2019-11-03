@@ -13,10 +13,16 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  public getAll() : Observable<Array<TextPost>>{
+  public getText() : Observable<Array<TextPost>>{
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "text";
     return this.http.get<Array<TextPost>>(completeUrl, options);
+  }
+
+  public updateText(text : Text) : Observable<TextPost>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "text";
+    return this.http.post<TextPost>(completeUrl, text, options);
   }
 
   private httpOptions() {

@@ -17,13 +17,14 @@ export class TextPostsComponent implements OnInit, OnDestroy {
     private dataService  : DataService) { }
 
   isLoggedIn : boolean = true;
-  posts$ : Observable<Array<TextPost>> = this.dataService.getAll();
+  posts$ : Observable<Array<TextPost>> = this.dataService.getText();
 
   /*Subscriptions*/
   private isLoggedInSub : Subscription;
 
   updateText(text : Text){
-    console.log(text);
+    let k = this.dataService.updateText(text);
+    k.subscribe(x => console.log(x));
   }
 
   ngOnInit(){

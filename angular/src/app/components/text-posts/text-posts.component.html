@@ -22,6 +22,7 @@
                             <textarea class="form-control md-textarea" [(ngModel)]=post.text> </textarea>
                         </div>
                         <a href="#" mdbBtn color="primary-color-dark" (click)="updateText(post)" mdbWavesEffect>Save</a>
+                        Last Edited By {{post.lastUpdatedBy}} on {{post.lastUpdated}}
                     </div>
                     <ng-template #notLoggedIn>
                         <mdb-card-text class="text-black-50"> {{post.text}}
