@@ -15,10 +15,10 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  public isLoggedIn() : Observable<boolean>{
+  public isLoggedIn() : Observable<string>{
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "isLoggedIn";
-    return this.http.get<string>(completeUrl, options).pipe(map(x => (x == "true"))); 
+    return this.http.get<string>(completeUrl, options); 
   }
   
   public login(userlogin : Login) : Observable<string>{

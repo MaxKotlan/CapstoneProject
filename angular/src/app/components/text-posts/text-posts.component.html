@@ -1,6 +1,6 @@
 <div class="container col-lg-11">
     <div class="row">
-        <div class="col-lg-6" *ngFor="let post of posts | async">
+        <div class="col-lg-6" *ngFor="let post of posts$ | async">
             <br>
             <mdb-card>
 
@@ -11,13 +11,17 @@
                 </mdb-card-header>
 
                 <mdb-card-body>
-
-                    <mdb-card-text class="text-black-50"> {{post.text}}
-                    </mdb-card-text>
-
-                    {{ (isLoggedIn | async) }}
-
-                    <a [hidden]="!(isLoggedIn | async)" href="#" mdbBtn color="primary-color-dark" mdbWavesEffect>Edit</a>
+                    <div *ngIf="isLoggedIn; else notLoggedIn">
+                        <div class="md-form">
+                            <textarea id="textarea-char-counter" class="form-control md-textarea"> {{post.text}} </textarea>
+                            <label for="textarea-char-counter">Edit Text</label>
+                        </div>
+                        <a href="#" mdbBtn color="primary-color-dark" mdbWavesEffect>Save</a>
+                    </div>
+                    <ng-template #notLoggedIn>
+                        <mdb-card-text class="text-black-50"> {{post.text}}
+                        </mdb-card-text>
+                    </ng-template>
                 </mdb-card-body>
             </mdb-card>
         </div>
