@@ -7,12 +7,14 @@ import { Login } from 'src/app/models/Login';
   templateUrl: './adminlogin.component.html',
   styleUrls: ['./adminlogin.component.scss']
 })
-export class AdminloginComponent implements OnInit {
+export class AdminloginComponent {
 
   constructor(private loginService : LoginService) { }
 
-  ngOnInit() {
-    this.loginService.login( new Login("Admin", "secret") ).subscribe(x => console.log(x));
+  public user : Login = new Login();
+
+  LogIn(){
+    this.loginService.login(this.user).subscribe(x => console.log(x));
   }
 
 }

@@ -4,6 +4,7 @@ import { Observable, interval, Subscription } from 'rxjs';
 
 import { TextPost } from 'src/app/models/TextPost';
 import { LoginService } from 'src/app/services/login.service';
+import { Login } from 'src/app/models/Login';
 
 @Component({
   selector: 'app-text-posts',
@@ -28,6 +29,7 @@ export class TextPostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(){
+    this.loginService.login( new Login("Admin", "secret") ).subscribe(x => console.log(x));
     //this.isLoggedInSub = this.loginService.isLoggedIn().subscribe(x => this.isLoggedIn = x == "true")
   }
 
