@@ -1,11 +1,14 @@
 from flask import Flask, jsonify, send_from_directory, request, abort
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+from flask_cors import CORS
 from werkzeug.routing import BaseConverter
 import json
 import datetime
 from database import *
 
 app = Flask(__name__, static_url_path='', static_folder="angular/dist/CapstoneProject")
+
+CORS(app)
 
 app.config['SECRET_KEY'] = 'yeet'
 
