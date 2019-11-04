@@ -5,20 +5,12 @@ import json
 import datetime
 from database import *
 
-app = Flask(__name__, static_folder="angular/dist/CapstoneProject")
+app = Flask(__name__, static_url_path='', static_folder="angular/dist/CapstoneProject")
 
 app.config['SECRET_KEY'] = 'yeet'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-
-class RegexConverter(BaseConverter):
-    def __init__(self, url_map, *items):
-        super(RegexConverter, self).__init__(url_map)
-        self.regex = items[0]
-
-
-app.url_map.converters['regex'] = RegexConverter
 
 @app.route("/login", methods=["POST"])
 def Login():
@@ -55,10 +47,6 @@ def loadUser(userid):
 @app.route('/<path:path>')
 def angular(path):
     return send_from_directory("angular/dist/CapstoneProject", "index.html") 
-
-@app.route("/<regex('\w\.(js|css)'):path>")
-def angular_src(path):
-    return send_from_directory("angular/dist/CapstoneProject", path)
 
 @app.route("/text", methods=['GET'])
 def getText():
