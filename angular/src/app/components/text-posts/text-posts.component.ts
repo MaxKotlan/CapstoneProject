@@ -14,7 +14,7 @@ import { mapTo, map } from 'rxjs/operators';
   templateUrl: './text-posts.component.html',
   styleUrls: ['./text-posts.component.scss']
 })
-export class TextPostsComponent implements OnInit, OnDestroy {
+export class TextPostsComponent {
 
   constructor(
     private loginService : LoginService,
@@ -22,22 +22,13 @@ export class TextPostsComponent implements OnInit, OnDestroy {
     private toast: ToastService
     ) { }
 
-  isLoggedIn : boolean = false;
+  isLoggedIn$ : Observable<boolean>    = this.loginService.isLoggedIn(); 
   posts$ : Observable<Array<TextPost>> = this.dataService.getText();
-
-  /*Subscriptions*/
-  private isLoggedInSub : Subscription;
 
   updateText(text : TextPost){
     this.dataService.updateText(text).subscribe(
       (res : string) => this.toast.success("Succesfully Updated Text", "Success"),
-      (err : HttpErrorResponse)=> {console.log(err); this.toast.error(err.statusText, "Error");}
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
   }
-
-  ngOnInit(){
-    this.isLoggedInSub = this.loginService.isLoggedIn().subscribe(y => this.isLoggedIn = y);
-  }
-
-  ngOnDestroy(){ this.isLoggedInSub.unsubscribe(); }
 }
