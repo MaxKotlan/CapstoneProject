@@ -44,8 +44,10 @@ export class TextPostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(){
-    this.loginService.login( new Login("Admin", "secret") ).subscribe(x => console.log(x));
-    this.isLoggedInSub = this.loginService.isLoggedIn().subscribe(x => this.isLoggedIn = x == "true")
+    this.loginService.login( new Login("Admin", "secret") ).toPromise().then(
+      x => this.loginService.isLoggedIn().subscribe(y => console.log(x, y)),
+      e => this.loginService.isLoggedIn().subscribe(z => console.log(e, z))
+    );
   }
 
   ngOnDestroy(){ this.isLoggedInSub.unsubscribe(); }

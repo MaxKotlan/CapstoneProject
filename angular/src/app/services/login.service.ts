@@ -15,24 +15,13 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  public isLoggedIn() : Observable<string>{
-    const options = this.httpOptions();
+  public isLoggedIn() : Observable<boolean>{
     var completeUrl : string = this.controllerUrl + "isLoggedIn";
-    return this.http.get<string>(completeUrl, options); 
+    return this.http.get<boolean>(completeUrl); 
   }
   
   public login(userlogin : Login) : Observable<string>{
-    const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "login";
-    return this.http.post<string>(completeUrl, userlogin, options);
-  }
-
-  private httpOptions() {
-    return {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            //'Authorization': 'my-auth-token'
-        })
-    };
+    return this.http.post<string>(completeUrl, userlogin, {responseType:'text' as 'json'});
   }
 }

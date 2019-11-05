@@ -6,9 +6,14 @@ import json
 import datetime
 from database import *
 
+import mimetypes
+mimetypes.add_type('text/css', '.css')
+mimetypes.add_type('text/javascript', '.js')
+
+
 app = Flask(__name__, static_url_path='', static_folder="angular/dist/CapstoneProject")
 
-CORS(app)
+CORS(app, support_credentials=True)
 
 app.config['SECRET_KEY'] = 'yeet'
 
