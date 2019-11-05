@@ -19,17 +19,25 @@ export class DataService {
     return this.http.get<Array<TextPost>>(completeUrl, options);
   }
 
-  public updateText(text : Text) : Observable<TextPost>{
-    const options = this.httpOptions();
+  public updateText(text : TextPost) : Observable<string>{
+    const options = this.httpOptions2();
     var completeUrl : string = this.controllerUrl + "text";
-    return this.http.post<TextPost>(completeUrl, text, options);
+    return this.http.post<string>(completeUrl, text, options);
+  }
+
+  private httpOptions2() {
+    return {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+        }),
+        responseType:'text' as 'json'
+    };
   }
 
   private httpOptions() {
     return {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            //'Authorization': 'my-auth-token'
         })
     };
   }

@@ -52,6 +52,8 @@ def loadUser(userid):
     return User[userid]
 
 @app.route('/', defaults={'path': ''})
+@app.route('/works', defaults={'path': '/works'})
+@app.route('/adminlogin', defaults={'path': '/adminlogin'})
 @app.route('/<path:path>')
 def angular(path):
     return send_from_directory("angular/dist/CapstoneProject", "index.html") 

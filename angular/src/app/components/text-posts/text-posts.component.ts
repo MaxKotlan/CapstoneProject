@@ -22,32 +22,21 @@ export class TextPostsComponent implements OnInit, OnDestroy {
     private toast: ToastService
     ) { }
 
-  isLoggedIn : boolean = true;
+  isLoggedIn : boolean = false;
   posts$ : Observable<Array<TextPost>> = this.dataService.getText();
 
   /*Subscriptions*/
   private isLoggedInSub : Subscription;
 
-  updateText(text : Text){
+  updateText(text : TextPost){
     this.dataService.updateText(text).subscribe(
-      (res : TextPost) => this.updateTextPostsLocally(res),
+      (res : string) => this.toast.success("Succesfully Updated Text", "Success"),
       (err : HttpErrorResponse)=> {console.log(err); this.toast.error(err.statusText, "Error");}
     );   
   }
 
-  updateTextPostsLocally(text : TextPost){
-    this.posts$ = this.posts$.pipe(map(
-      (posts : Array<TextPost>) => {
-        Object.assign(posts.find((p : TextPost) => p.id == text.id), text); 
-        return posts; 
-      }));
-  }
-
   ngOnInit(){
-    this.loginService.login( new Login("Admin", "secret") ).toPromise().then(
-      x => this.loginService.isLoggedIn().subscribe(y => console.log(x, y)),
-      e => this.loginService.isLoggedIn().subscribe(z => console.log(e, z))
-    );
+    this.isLoggedInSub = this.loginService.isLoggedIn().subscribe(y => this.isLoggedIn = y);
   }
 
   ngOnDestroy(){ this.isLoggedInSub.unsubscribe(); }
