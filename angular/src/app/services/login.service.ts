@@ -19,6 +19,11 @@ export class LoginService {
     var completeUrl : string = this.controllerUrl + "isLoggedIn";
     return this.http.get<boolean>(completeUrl); 
   }
+
+  public logout() : Observable<string>{
+    var completeUrl : string = this.controllerUrl + "logout";
+    return this.http.get<string>(completeUrl, {responseType:'text' as 'json'}); 
+  }
   
   public login(userlogin : Login) : Observable<string>{
     var completeUrl : string = this.controllerUrl + "login";

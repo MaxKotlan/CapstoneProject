@@ -17,16 +17,16 @@ import { mapTo, map } from 'rxjs/operators';
 export class TextPostsComponent {
 
   constructor(
-    private loginService : LoginService,
     private dataService  : DataService,
+    private loginService : LoginService,
     private toast: ToastService
     ) { }
 
-  isLoggedIn$ : Observable<boolean>    = this.loginService.isLoggedIn(); 
+  isLoggedIn$ : Observable<boolean> = this.loginService.isLoggedIn();
   posts$ : Observable<Array<TextPost>> = this.dataService.getText();
 
   updateText(text : TextPost){
-    this.dataService.updateText(text).subscribe(
+    this.dataService.updateText(text).toPromise().then(
       (res : string) => this.toast.success("Succesfully Updated Text", "Success"),
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
