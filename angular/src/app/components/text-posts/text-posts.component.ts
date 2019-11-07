@@ -17,8 +17,10 @@ export class TextPostsComponent{
   constructor(
     private dataService  : DataService,
     private store: Store<{ isLoggedIn : boolean }>,
-    private toast: ToastService
+    private toast: ToastService,
     ) { }
+
+  public previewMode = false;
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   posts$ : Observable<Array<TextPost>> = this.dataService.getText();
