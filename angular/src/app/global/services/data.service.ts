@@ -19,11 +19,18 @@ export class DataService {
     return this.http.get<Array<TextPost>>(completeUrl, options);
   }
 
-  public updateText(text : TextPost) : Observable<string>{
+  public addText(text : TextPost) : Observable<string>{
     const options = this.httpOptions2();
     var completeUrl : string = this.controllerUrl + "text";
     return this.http.post<string>(completeUrl, text, options);
   }
+
+  public updateText(text : TextPost) : Observable<string>{
+    const options = this.httpOptions2();
+    var completeUrl : string = this.controllerUrl + "text";
+    return this.http.put<string>(completeUrl, text, options);
+  }
+
 
   private httpOptions2() {
     return {
