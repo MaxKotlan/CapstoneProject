@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, interval } from 'rxjs';
-import { TextPost } from 'src/app/models/TextPost';
-import { DataService } from 'src/app/services/data.service';
+import { TextPost } from '../../global/models/TextPost';
+import { DataService } from '../../global/services/data.service';
 import { map } from 'rxjs/operators';
 
 @Component({

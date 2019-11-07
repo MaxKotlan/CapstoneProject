@@ -1,28 +1,26 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
-import { Observable, interval, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { DataService } from '../../global/services/data.service';
+import { Observable } from 'rxjs';
 
-import { TextPost } from 'src/app/models/TextPost';
-import { LoginService } from 'src/app/services/login.service';
-import { Login } from 'src/app/models/Login';
+import { TextPost } from '../../global/models/TextPost';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from 'ng-uikit-pro-standard';
-import { mapTo, map } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-text-posts',
   templateUrl: './text-posts.component.html',
   styleUrls: ['./text-posts.component.scss']
 })
-export class TextPostsComponent {
+export class TextPostsComponent{
 
   constructor(
     private dataService  : DataService,
-    private loginService : LoginService,
+    private store: Store<{ isLoggedIn : boolean }>,
     private toast: ToastService
     ) { }
 
-  isLoggedIn$ : Observable<boolean> = this.loginService.isLoggedIn();
+  isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   posts$ : Observable<Array<TextPost>> = this.dataService.getText();
 
   updateText(text : TextPost){
