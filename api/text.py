@@ -22,10 +22,10 @@ def addText():
     json = request.get_json()
 
     with db_session:
-      Text(title=json['title'], text=json['text'], lastUpdated=datetime.datetime.now(), lastUpdatedBy=current_user.username)
+      new_text = Text(title=json['title'], text=json['text'], lastUpdated=datetime.datetime.now(), lastUpdatedBy=current_user.username)
       commit()
 
-    return "success"
+    return jsonify(new_text.to_dict())
 
 
 @text.route("/text", methods=['PUT'])
@@ -38,13 +38,13 @@ def updateText():
 
     with db_session:
       to_update = Text.get(id=json['id'])
-      to_update.title = json['title']
+    to_update.title = json['title']
       to_update.text = json['text']
       to_update.lastUpdated = datetime.datetime.now()
       to_update.lastUpdatedBy = current_user.username
       commit()
 
-    return "success"
+    return jsonify(to_update.to_dict())
 
 
 @text.route("/text", methods=['DELETE'])
@@ -60,4 +60,4 @@ def deleteText():
       to_delete.delete()
       commit()
 
-    return "success"
+    return jsonify(to_delete.to_dict())
