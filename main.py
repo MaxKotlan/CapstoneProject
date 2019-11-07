@@ -68,7 +68,22 @@ def getText():
 
 @app.route("/text", methods=['POST'])
 @login_required
-def saveText():
+def addText():
+    if not request.json:
+        abort(400)
+
+    json = request.get_json()
+
+    with db_session:
+      new_text = Text(title=json['title'], text=json['text'], lastUpdated=datetime.datetime.now(), lastUpdatedBy=current_user.username)
+      commit()
+
+    return "success"
+
+
+@app.route("/text", methods=['PUT'])
+@login_required
+def updateText():
     if not request.json:
         abort(400)
 
@@ -76,10 +91,26 @@ def saveText():
 
     with db_session:
       to_update = Text.get(id=json['id'])
-      to_update.text = json['title']
+      to_update.title = json['title']
       to_update.text = json['text']
       to_update.lastUpdated = datetime.datetime.now()
       to_update.lastUpdatedBy = current_user.username
+      commit()
+
+    return "success"
+
+
+@app.route("/text", methods=['DELETE'])
+@login_required
+def deleteText():
+    if not request.json:
+        abort(400)
+
+    json = request.get_json()
+
+    with db_session:
+      to_delete = Text.get(id=json['id'])
+      to_delete.delete()
       commit()
 
     return "success"
