@@ -15,12 +15,12 @@ import {
       ),
       query(
         ':leave',
-        [style({ opacity: 1 }), animate('1.3s', style({ opacity: 0 }))],
+        [style({ opacity: 1 }), animate('1.0s', style({ opacity: 0 }))],
         { optional: true }
       ),
       query(
         ':enter',
-        [style({ opacity: 0 }), animate('1.3s', style({ opacity: 1 }))],
+        [style({ opacity: 0 }), animate('1.0s', style({ opacity: 1 }))],
         { optional: true }
       )
     ])
