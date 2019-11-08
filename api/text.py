@@ -8,8 +8,8 @@ text = Blueprint('text', __name__)
 @text.route("/text", methods=['GET'])
 def getText():
     with db_session:
-        all_text_result = select(t for t in Text)[:]
-        all_text_list = list(t.to_dict() for t in all_text_result)
+      all_text_result = select(t for t in Text)[:]
+      all_text_list = list(t.to_dict() for t in all_text_result)
     
     return jsonify(all_text_list)
 
@@ -38,7 +38,7 @@ def updateText():
 
     with db_session:
       to_update = Text.get(id=json['id'])
-    to_update.title = json['title']
+      to_update.title = json['title']
       to_update.text = json['text']
       to_update.lastUpdated = datetime.datetime.now()
       to_update.lastUpdatedBy = current_user.username
