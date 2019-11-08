@@ -8,6 +8,7 @@ from database import *
 
 from api.text  import text
 from api.login import login
+from api.work  import work
 
 import mimetypes
 mimetypes.add_type('text/css', '.css')
@@ -15,8 +16,9 @@ mimetypes.add_type('text/javascript', '.js')
 
 
 app = Flask(__name__, static_url_path='', static_folder="angular/dist/CapstoneProject")
-app.register_blueprint(text, url_prefix='/api')
+app.register_blueprint(text,  url_prefix='/api')
 app.register_blueprint(login, url_prefix='/api')
+app.register_blueprint(work,  url_prefix='/api')
 
 
 
