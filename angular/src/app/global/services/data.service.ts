@@ -38,6 +38,12 @@ export class DataService {
     return this.http.get<Array<Work>>(completeUrl, options);
   }
 
+  public updateWork(work : Work) : Observable<string>{
+    const options = this.httpOptions2();
+    var completeUrl : string = this.controllerUrl + "work";
+    return this.http.put<string>(completeUrl, work, options);
+  }
+
 
   private httpOptions2() {
     return {
