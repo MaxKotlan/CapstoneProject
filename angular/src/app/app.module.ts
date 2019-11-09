@@ -9,7 +9,7 @@ import { TextPostsComponent } from './components/text-posts/text-posts.component
 import { DataService } from './global/services/data.service';
 import { LoginService } from './global/services/login.service';
 import { WorksComponent } from './components/works/works.component';
-import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
+import { AdminComponent } from './components/adminlogin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { isLoggedInReducer } from './global/reducer/login.reducer';
@@ -19,7 +19,7 @@ import { isLoggedInReducer } from './global/reducer/login.reducer';
     AppComponent,
     TextPostsComponent,
     WorksComponent,
-    AdminloginComponent
+    AdminComponent
   ],
   imports: [
     BrowserModule,

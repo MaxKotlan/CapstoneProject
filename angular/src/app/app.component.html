@@ -8,6 +8,7 @@
         </ul>
 
         <ul *ngIf="isLoggedIn$ | async" class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link waves-light" href='/admin' mdbWavesEffect>Settings</a></li>
             <li class="nav-item"><a class="nav-link waves-light" (click)="logout()" mdbWavesEffect>Logout</a></li>
         </ul>
 

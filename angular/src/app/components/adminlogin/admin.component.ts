@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 import { isLoggedInSuccesfully } from 'src/app/global/actions/login.actions';
 
 @Component({
-  selector: 'app-adminlogin',
-  templateUrl: './adminlogin.component.html',
-  styleUrls: ['./adminlogin.component.scss']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class AdminloginComponent {
+export class AdminComponent {
 
   constructor(
     private loginService : LoginService,
@@ -27,7 +27,7 @@ export class AdminloginComponent {
     this.loginService.login(this.user).toPromise().then(
       (res : string) => [
         this.store.dispatch(isLoggedInSuccesfully()),
-        this.toast.success("Succesfully Logged in as " + this.user.username, "Success")
+        this.toast.success("Succesfully Logged in as " + this.user.email, "Success")
       ],
       (err : HttpErrorResponse)=> this.toast.error("Could not log in.", "Error")
     );   
