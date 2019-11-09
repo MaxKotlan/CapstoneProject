@@ -27,7 +27,14 @@ export class WorksComponent {
 
   updateWork(work : Work){
     this.dataService.updateWork(work).toPromise().then(
-      (res : string) => this.toast.success("Succesfully Updated Text", "Success"),
+      (res : string) => this.toast.success("Succesfully Updated Work", "Success"),
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
+    );   
+  }
+
+  deleteWork(work : Work){
+    this.dataService.deleteWork(work).toPromise().then(
+      (res : string) => this.toast.success("Succesfully Deleted Work", "Success"),
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
   }

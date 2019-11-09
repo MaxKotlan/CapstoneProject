@@ -13,13 +13,15 @@ import { AdminComponent } from './components/adminlogin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { isLoggedInReducer } from './global/reducer/login.reducer';
+import { DeleteWarningComponent } from './components/delete-warning/delete-warning.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TextPostsComponent,
     WorksComponent,
-    AdminComponent
+    AdminComponent,
+    DeleteWarningComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,11 @@
             <br>
             <mdb-card>
 
+                <app-delete-warning *ngIf="(isLoggedIn$ | async) && !previewMode"
+                    [objectToDelete]="work"
+                    [deleteCallback]="deleteWork.bind(this)">
+                </app-delete-warning>
+
                 <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
                     <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedInTitle">
                         <div class="md-form">
@@ -38,7 +43,7 @@
                     </div>
                     <ng-template #notLoggedIn>
                         <mdb-card-text>{{work.description }} </mdb-card-text><br>
-                        <a href={{work.path}} mdbBtn color="primary" mdbWavesEffect class="col-lg-12">View Document</a>
+                        <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
                     </ng-template>
                 </mdb-card-body>
             </mdb-card>

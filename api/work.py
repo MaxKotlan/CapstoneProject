@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, abort
 from flask_login import login_required, current_user
 from database import *
 import json
+import copy
 
 work = Blueprint('work', __name__)
 
@@ -46,17 +47,15 @@ def updateWork():
     return jsonify(to_update.to_dict())
 
 
-@work.route("/work", methods=['DELETE'])
+@work.route("/work/<int:workid>", methods=['DELETE'])
 @login_required
-def deleteWork():
-    if not request.json:
-        abort(400)
-
-    json = request.get_json()
+def deleteWork(workid):
+    if not workid: abort(400)
 
     with db_session:
-      to_delete = Work.get(id=json['id'])
+      to_delete = Work.get(id=workid)
+      return_value = jsonify(to_delete.to_dict())
       to_delete.delete()
       commit()
+      return return_value
 
-    return jsonify(to_delete.to_dict())
