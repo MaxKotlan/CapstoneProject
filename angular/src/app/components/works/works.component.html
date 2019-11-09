@@ -1,19 +1,26 @@
 <div class="container col-lg-11">
     <div class="row">
-        <div class="col-lg-2" *ngFor="let work of works | async">
+        <div class="col-lg-10" *ngIf="isLoggedIn$ | async">
+                <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                    <button mdbBtn type="button" color="default" size="lg" class="waves-light" mdbWavesEffect (click)="previewMode = !previewMode"> Preview {{ !previewMode ? "On" : "Off" }} </button>
+                    <button mdbBtn type="button" rounded="true" color="primary" size="lg" class="waves-light" mdbWavesEffect> + </button>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let work of works$ | async">
             <br>
             <mdb-card>
 
-                <mdb-card-header class="grey lighten-5 grey-text text-center py-4">
+                <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
                     <h5>
                         <strong> {{work.title}} </strong>
                     </h5>
                 </mdb-card-header>
 
-                <mdb-card-body>
-
-                    <a href="#" mdbBtn color="primary-color-dark" mdbWavesEffect>View</a>
-                
+                <mdb-card-body cascade="true">
+                    <p>{{work.description }} </p><br>
+                    <a href={{work.path}} mdbBtn color="primary" mdbWavesEffect class="col-lg-12">View Document</a>
                 </mdb-card-body>
             </mdb-card>
         </div>

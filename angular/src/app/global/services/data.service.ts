@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TextPost } from '../models/TextPost';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Work } from '../models/Work';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,12 @@ export class DataService {
     const options = this.httpOptions2();
     var completeUrl : string = this.controllerUrl + "text";
     return this.http.put<string>(completeUrl, text, options);
+  }
+
+  public getWork() : Observable<Array<Work>>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "work";
+    return this.http.get<Array<Work>>(completeUrl, options);
   }
 
 
