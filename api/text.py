@@ -47,17 +47,14 @@ def updateText():
     return jsonify(to_update.to_dict())
 
 
-@text.route("/text", methods=['DELETE'])
+@text.route("/text/<int:textid>", methods=['DELETE'])
 @login_required
-def deleteText():
-    if not request.json:
-        abort(400)
-
-    json = request.get_json()
+def deleteText(textid):
+    if not textid: abort(400)
 
     with db_session:
-      to_delete = Text.get(id=json['id'])
+      to_delete = Text.get(id=textid)
+      return_value = jsonify(to_delete.to_dict())
       to_delete.delete()
       commit()
-
-    return jsonify(to_delete.to_dict())
+      return return_value
