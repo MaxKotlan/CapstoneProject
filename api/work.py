@@ -15,7 +15,7 @@ def getWork():
 
 @work.route("/work", methods=['POST'])
 @login_required
-def addText():
+def addWork():
     if not request.json:
         abort(400)
 
@@ -29,7 +29,7 @@ def addText():
 
 @work.route("/work", methods=['PUT'])
 @login_required
-def updateText():
+def updateWork():
     if not request.json:
         abort(400)
 
@@ -48,7 +48,7 @@ def updateText():
 
 @work.route("/work", methods=['DELETE'])
 @login_required
-def deleteText():
+def deleteWork():
     if not request.json:
         abort(400)
 

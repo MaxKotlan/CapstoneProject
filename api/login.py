@@ -8,15 +8,14 @@ login = Blueprint('login', __name__)
 def Login():
     if not request.json or not 'username' in request.json or not 'password' in request.json:
         abort(400)
-    
-    with db_session:
-        user = get(u for u in User if u.username==request.json['username'] and u.password==request.json['password'])
 
-    if user:
-        login_user(user, remember=True)
-        return "success"
-    else:
+    with db_session:
+        user = get(u for u in User if u.username==request.json['username'])
+
+    if user is None or not user.check_password(request.json['password']):
         abort(403)
+    login_user(user, remember=True)
+    return "success"
 
 @login.route('/isLoggedIn', methods=["GET"])
 def isLoggedIn():
