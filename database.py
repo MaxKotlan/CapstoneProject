@@ -15,8 +15,9 @@ class Text(db.Entity):
 
 class User(db.Entity, UserMixin):
     id = PrimaryKey(int, auto=True)
-    username = Required(str)
+    email = Required(str, unique=True)
     password = Required(str)
+    email_verified = Required(bool)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -31,12 +32,17 @@ class Work(db.Entity):
     description = Required(str)
     dateAdded = Required(datetime.datetime)
 
+class PendingUser(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    email = Required(str, unique=True)
+    validation_key = Required(str, unique=True)
+
 db.generate_mapping(create_tables=True)
 
 @db_session
 def populate_database():
     w1 = Work(title="work", path="/documents", description="decription of things", dateAdded=datetime.datetime.now())
-    u1 = User(username="Admin", password="unhashed")
+    u1 = User(email="admin@admin.com", password="unhashed", email_verified=True)
     u1.set_password("secret")
     t1 = Text(title="section 1", text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", lastUpdated=datetime.datetime.now(), lastUpdatedBy="clay_james")
     t2 = Text(title="section 2", text="ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu ", lastUpdated=datetime.datetime.now(), lastUpdatedBy="clay_james")
