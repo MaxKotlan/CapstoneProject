@@ -22,7 +22,7 @@ def addText():
     json = request.get_json()
 
     with db_session:
-      new_text = Text(title=json['title'], text=json['text'], lastUpdated=datetime.datetime.now(), lastUpdatedBy=current_user.username)
+      new_text = Text(title=json['title'], text=json['text'], lastUpdated=datetime.datetime.now(), lastUpdatedBy=current_user.email)
       commit()
 
     return jsonify(new_text.to_dict())
@@ -41,7 +41,7 @@ def updateText():
       to_update.title = json['title']
       to_update.text = json['text']
       to_update.lastUpdated = datetime.datetime.now()
-      to_update.lastUpdatedBy = current_user.username
+      to_update.lastUpdatedBy = current_user.email
       commit()
 
     return jsonify(to_update.to_dict())

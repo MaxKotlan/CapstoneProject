@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../global/services/data.service';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { Store, select } from '@ngrx/store';
   templateUrl: './text-posts.component.html',
   styleUrls: ['./text-posts.component.scss']
 })
-export class TextPostsComponent{
+export class TextPostsComponent implements OnInit{
 
   constructor(
     private dataService  : DataService,
@@ -24,6 +24,14 @@ export class TextPostsComponent{
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   posts$ : Observable<Array<TextPost>> = this.dataService.getText();
+  posts : Array<TextPost>;
+
+  ngOnInit(){
+    this.posts$.toPromise().then(
+      (res : Array<TextPost>) => this.posts = res,
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
+    );
+  }
 
   updateText(text : TextPost){
     this.dataService.updateText(text).toPromise().then(
@@ -34,7 +42,10 @@ export class TextPostsComponent{
 
   deleteText(text : TextPost){
     this.dataService.deleteText(text).toPromise().then(
-      (res : string) => this.toast.success("Succesfully Deleted Work", "Success"),
+      (deletedPost : TextPost) => [
+        this.toast.success("Succesfully Deleted Text", "Success"),
+        this.posts = this.posts.filter((t : TextPost) => t.id != deletedPost.id)
+      ],
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
   }
