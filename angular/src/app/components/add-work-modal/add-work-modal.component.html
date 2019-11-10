@@ -1,0 +1,52 @@
+<!--<button type="button" mdbBtn color="black" aria-label="Close" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+  mdbWavesEffect>
+    "yeeet"
+</button> -->
+
+<button mdbBtn type="button" color="primary" size="lg" class="waves-light" mdbWavesEffect (click)="frame.show()"> Add </button>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">Add Work</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center">
+          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+
+            <div class="md-form">
+                <input mdbInput type="text" class="form-control" [(ngModel)]="toAddWork.title">
+                <label for="title" class="">Title</label>
+            </div>
+            <div class="md-form">
+                <input mdbInput type="text" class="form-control" [(ngModel)]="toAddWork.path">
+                <label for="path" class="">Link</label>
+            </div>
+            <div class="md-form">
+                <input mdbInput type="text" class="form-control" [(ngModel)]="toAddWork.description">
+                <label for="text" class="">Description</label>
+            </div>
+
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect (click)="addButtonClicked(); frame.hide()">Add
+          <mdb-icon far icon="check" class="ml-1"></mdb-icon>
+        </a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

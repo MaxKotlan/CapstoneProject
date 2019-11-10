@@ -33,6 +33,16 @@ export class WorksComponent {
     );
   }
 
+  addWork(work : Work){
+    this.dataService.addWork(work).toPromise().then(
+      (res : Work) => [
+        this.toast.success("Succesfully Added Work", "Success"),
+        this.works.push(res)
+      ],
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
+    );      
+  }
+
   updateWork(work : Work){
     this.dataService.updateWork(work).toPromise().then(
       (res : string) => this.toast.success("Succesfully Updated Work", "Success"),

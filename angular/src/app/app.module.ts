@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { isLoggedInReducer } from './global/reducer/login.reducer';
 import { DeleteWarningComponent } from './components/delete-warning/delete-warning.component';
+import { AddTextModalComponent } from './components/add-text-modal/add-text-modal.component';
+import { AddWorkModalComponent } from './components/add-work-modal/add-work-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { DeleteWarningComponent } from './components/delete-warning/delete-warni
     TextPostsComponent,
     WorksComponent,
     AdminComponent,
-    DeleteWarningComponent
+    DeleteWarningComponent,
+    AddTextModalComponent,
+    AddWorkModalComponent
   ],
   imports: [
     BrowserModule,

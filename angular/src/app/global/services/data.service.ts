@@ -32,22 +32,28 @@ export class DataService {
     return this.http.put<string>(completeUrl, text, options);
   }
 
+  public deleteText(text : TextPost) : Observable<TextPost>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "text/" + text.id;
+    return this.http.delete<TextPost>(completeUrl, options);
+  }
+
   public getWork() : Observable<Array<Work>>{
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "work";
     return this.http.get<Array<Work>>(completeUrl, options);
   }
 
+  public addWork(work : Work) : Observable<Work>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "work";
+    return this.http.post<Work>(completeUrl, work, options);
+  }
+
   public updateWork(work : Work) : Observable<string>{
     const options = this.httpOptions2();
     var completeUrl : string = this.controllerUrl + "work";
     return this.http.put<string>(completeUrl, work, options);
-  }
-
-  public deleteText(text : TextPost) : Observable<TextPost>{
-    const options = this.httpOptions();
-    var completeUrl : string = this.controllerUrl + "text/" + text.id;
-    return this.http.delete<TextPost>(completeUrl, options);
   }
 
   public deleteWork(work : Work) : Observable<Work>{
