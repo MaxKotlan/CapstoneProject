@@ -1,14 +1,14 @@
 
 <mdb-navbar SideClass="navbar navbar-expand-lg grey lighten-5 grey-text">
-    <mdb-navbar-brand><a class="navbar-brand grey-text" href="#">{{title}}</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand grey-text">{{title}}</a></mdb-navbar-brand>
     <links>
         <ul class="navbar-nav mr-auto">
             <li *ngFor="let link of links" 
-            class="nav-item active"><a class="nav-link waves-light" href={{link.route}} mdbWavesEffect>{{link.title}}</a></li>
+            class="nav-item active"><a class="nav-link waves-light" [routerLink]="[link.route]" mdbWavesEffect>{{link.title}}</a></li>
         </ul>
 
         <ul *ngIf="isLoggedIn$ | async" class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link waves-light" href='/admin' mdbWavesEffect>Settings</a></li>
+            <li class="nav-item"><a class="nav-link waves-light" [routerLink]="['/admin']" mdbWavesEffect>Settings</a></li>
             <li class="nav-item"><a class="nav-link waves-light" (click)="logout()" mdbWavesEffect>Logout</a></li>
         </ul>
 
