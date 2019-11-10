@@ -33,6 +33,16 @@ export class TextPostsComponent implements OnInit{
     );
   }
 
+  addText(text : TextPost){
+    this.dataService.addText(text).toPromise().then(
+      (res : TextPost) => [
+        this.toast.success("Succesfully Added Text", "Success"),
+        this.posts.push(res)
+      ],
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
+    );      
+  }
+
   updateText(text : TextPost){
     this.dataService.updateText(text).toPromise().then(
       (res : string) => this.toast.success("Succesfully Updated Text", "Success"),

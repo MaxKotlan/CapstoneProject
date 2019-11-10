@@ -1,8 +1,3 @@
-<!--<button type="button" mdbBtn color="black" aria-label="Close" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
-  mdbWavesEffect>
-    "yeeet"
-</button> -->
-
 <button mdbBtn type="button" color="primary" size="lg" class="waves-light" mdbWavesEffect (click)="frame.show()"> Add </button>
 
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -33,10 +28,9 @@
                 <label for="path" class="">Link</label>
             </div>
             <div class="md-form">
-                <input mdbInput type="text" class="form-control" [(ngModel)]="toAddWork.description">
-                <label for="text" class="">Description</label>
+                <textarea mdbInput class="form-control md-textarea" [(ngModel)]="toAddWork.description"> </textarea>
+                <label for="path" class="">Description</label>
             </div>
-
         </div>
       </div>
 

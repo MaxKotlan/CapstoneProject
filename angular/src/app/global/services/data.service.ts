@@ -20,10 +20,10 @@ export class DataService {
     return this.http.get<Array<TextPost>>(completeUrl, options);
   }
 
-  public addText(text : TextPost) : Observable<string>{
-    const options = this.httpOptions2();
+  public addText(text : TextPost) : Observable<TextPost>{
+    const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "text";
-    return this.http.post<string>(completeUrl, text, options);
+    return this.http.post<TextPost>(completeUrl, text, options);
   }
 
   public updateText(text : TextPost) : Observable<string>{
