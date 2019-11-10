@@ -24,11 +24,23 @@ export class WorksComponent {
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   works$ : Observable<Array<Work>> = this.dataService.getWork();
-  works : Array<Work>;
+  worksAll : Array<Work>;
+  worksFiltered : Array<Work>;
+
+  public searchText : String;
+
+  public search() {
+    let fields : Array<string> = Object.keys(new Work()).filter((key => key != 'id'));
+    this.worksFiltered = this.worksAll.filter((work : Work) => 
+      fields.some((key : string) => 
+        work[key].toUpperCase().includes(this.searchText.toUpperCase())
+      )
+    );
+  }
 
   ngOnInit(){
     this.works$.toPromise().then(
-      (res : Array<Work>) => this.works = res,
+      (res : Array<Work>) => this.worksFiltered = this.worksAll = res,
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );
   }
@@ -37,7 +49,7 @@ export class WorksComponent {
     this.dataService.addWork(work).toPromise().then(
       (res : Work) => [
         this.toast.success("Succesfully Added Work", "Success"),
-        this.works.push(res)
+        this.worksAll.push(res)
       ],
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );      
@@ -54,7 +66,7 @@ export class WorksComponent {
     this.dataService.deleteWork(work).toPromise().then(
       (deletedWork : Work) => [
         this.toast.success("Succesfully Deleted Work", "Success"),
-        this.works = this.works.filter((w : Work) => w.id != deletedWork.id)
+        this.worksAll = this.worksAll.filter((w : Work) => w.id != deletedWork.id)
       ],
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
