@@ -44,6 +44,12 @@ export class DataService {
     return this.http.put<string>(completeUrl, work, options);
   }
 
+  public deleteText(text : TextPost) : Observable<string>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "text/" + text.id;
+    return this.http.delete<string>(completeUrl, options);
+  }
+
   public deleteWork(work : Work) : Observable<string>{
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "work/" + work.id;

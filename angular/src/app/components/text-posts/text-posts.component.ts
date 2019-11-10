@@ -31,4 +31,11 @@ export class TextPostsComponent{
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
   }
+
+  deleteText(text : TextPost){
+    this.dataService.deleteText(text).toPromise().then(
+      (res : string) => this.toast.success("Succesfully Deleted Work", "Success"),
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
+    );   
+  }
 }

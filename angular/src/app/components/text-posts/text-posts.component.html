@@ -12,6 +12,11 @@
             <br>
             <mdb-card>
 
+                <app-delete-warning *ngIf="(isLoggedIn$ | async) && !previewMode"
+                    [objectToDelete]="post"
+                    [deleteCallback]="deleteText.bind(this)">
+                </app-delete-warning>
+
                 <mdb-card-header class="grey lighten-5 grey-text text-center py-4">
                     <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedInTitle">
                         <div class="md-form">
