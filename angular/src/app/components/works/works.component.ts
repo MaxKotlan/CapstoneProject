@@ -24,6 +24,14 @@ export class WorksComponent {
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   works$ : Observable<Array<Work>> = this.dataService.getWork();
+  works : Array<Work>;
+
+  ngOnInit(){
+    this.works$.toPromise().then(
+      (res : Array<Work>) => this.works = res,
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
+    );
+  }
 
   updateWork(work : Work){
     this.dataService.updateWork(work).toPromise().then(
@@ -34,9 +42,11 @@ export class WorksComponent {
 
   deleteWork(work : Work){
     this.dataService.deleteWork(work).toPromise().then(
-      (res : string) => this.toast.success("Succesfully Deleted Work", "Success"),
+      (deletedWork : Work) => [
+        this.toast.success("Succesfully Deleted Work", "Success"),
+        this.works = this.works.filter((w : Work) => w.id != deletedWork.id)
+      ],
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
   }
-
 }

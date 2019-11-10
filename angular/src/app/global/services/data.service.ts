@@ -50,10 +50,10 @@ export class DataService {
     return this.http.delete<TextPost>(completeUrl, options);
   }
 
-  public deleteWork(work : Work) : Observable<string>{
+  public deleteWork(work : Work) : Observable<Work>{
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "work/" + work.id;
-    return this.http.delete<string>(completeUrl, options);
+    return this.http.delete<Work>(completeUrl, options);
   }
 
 
