@@ -1,4 +1,6 @@
-<button mdbBtn type="button" color="primary" size="lg" class="waves-light" mdbWavesEffect (click)="frame.show()"> Add </button>
+<button mdbBtn type="button" color="primary" size="lg" class="waves-light" mdbWavesEffect (click)="frame.show()"> 
+    Add 
+</button>
 
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -17,7 +19,6 @@
       <!--Body-->
       <div class="modal-body">
         <div class="text-center">
-          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
             <div class="md-form">
                 <input mdbInput type="text" class="form-control" [(ngModel)]="toAddText.title">
                 <label for="title" class="">Title</label>
@@ -31,9 +32,7 @@
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect (click)="addButtonClicked(); frame.hide()">Add
-          <mdb-icon far icon="check" class="ml-1"></mdb-icon>
-        </a>
+        <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect (click)="addButtonClicked(); frame.hide()">Add</a>
       </div>
     </div>
     <!--/.Content-->

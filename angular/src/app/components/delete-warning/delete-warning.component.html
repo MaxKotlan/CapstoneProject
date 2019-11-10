@@ -20,16 +20,14 @@
       <!--Body-->
       <div class="modal-body">
         <div class="text-center">
-          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <mdb-icon fas icon="exclamation" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
           <p>You are about to delete this. Are you sure you want to?</p>
         </div>
       </div>
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect (click)="deleteCallback(objectToDelete)">Yes
-          <mdb-icon far icon="check" class="ml-1"></mdb-icon>
-        </a>
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect (click)="deleteCallback(objectToDelete)">Yes</a>
         <a type="button" mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">No</a>
       </div>
     </div>
