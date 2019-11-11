@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { Work } from 'src/app/global/models/Work';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Category } from 'src/app/global/models/Category';
 
 @Component({
   selector: 'app-works',
@@ -24,13 +25,16 @@ export class WorksComponent {
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   works$ : Observable<Array<Work>> = this.dataService.getWork();
+  category$ : Observable<Array<Category>> = this.dataService.getCategory();
+  
   worksAll : Array<Work>;
   worksFiltered : Array<Work>;
+  categories : Array<Category>;
 
   public searchText : String;
 
   public search() {
-    let fields : Array<string> = Object.keys(new Work()).filter((key => key != 'id'));
+    let fields : Array<string> = Object.keys(new Work()).filter((key => key != 'id' && key != 'category'));
     this.worksFiltered = this.worksAll.filter((work : Work) => 
       fields.some((key : string) => 
         work[key].toUpperCase().includes(this.searchText.toUpperCase())
@@ -38,7 +42,16 @@ export class WorksComponent {
     );
   }
 
+  public filterByCategory(category : Number) : Array<Category>{
+    return this.worksFiltered.filter((w : Work) => w.category == category);
+  }
+
   ngOnInit(){
+    this.category$.toPromise().then(
+      (res : Array<Category>) => this.categories = res,
+      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
+    );
+
     this.works$.toPromise().then(
       (res : Array<Work>) => this.worksFiltered = this.worksAll = res,
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")

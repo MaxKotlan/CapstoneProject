@@ -4,6 +4,7 @@ import { TextPost } from '../models/TextPost';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Work } from '../models/Work';
+import { Category } from '../models/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,11 @@ export class DataService {
     return this.http.delete<Work>(completeUrl, options);
   }
 
+  public getCategory() : Observable<Array<Category>>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "category";
+    return this.http.get<Array<Category>>(completeUrl, options);
+  }
 
   private httpOptions2() {
     return {

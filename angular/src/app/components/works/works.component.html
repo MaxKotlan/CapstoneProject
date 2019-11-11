@@ -18,7 +18,15 @@
                 </div>
         </div>
     </div>
-    <div class="row">
+
+    <div class="row" *ngFor="let category of categories">
+        
+            <div class="col-lg-12">
+                <br>
+                {{category.title}}
+                <hr>
+            </div>
+
         <div class="col-lg-4" *ngFor="let work of worksFiltered">
             <br>
             <mdb-card>

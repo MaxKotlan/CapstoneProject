@@ -23,7 +23,14 @@ def addWork():
     json = request.get_json()
 
     with db_session:
-      new_work = Work(title=json['title'], path=json['path'], description=json['description'], dateAdded=datetime.datetime.now())
+      cat = Category.get(id=json['category'])
+      new_work = Work(
+        title=json['title'], 
+        path=json['path'], 
+        description=json['description'], 
+        category=Category(title="asdkljsad", description="asdkljjdsakljahsdk"),
+        dateAdded=datetime.datetime.now()
+      )
       commit()
 
     return jsonify(new_work.to_dict())
