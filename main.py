@@ -9,6 +9,7 @@ from database import *
 from api.text  import text
 from api.login import login
 from api.work  import work
+from api.category import category
 
 import mimetypes
 mimetypes.add_type('text/css', '.css')
@@ -19,7 +20,7 @@ app = Flask(__name__, static_url_path='', static_folder="angular/dist/CapstonePr
 app.register_blueprint(text,  url_prefix='/api')
 app.register_blueprint(login, url_prefix='/api')
 app.register_blueprint(work,  url_prefix='/api')
-
+app.register_blueprint(category, url_prefix='/api')
 
 
 CORS(app, support_credentials=True)
