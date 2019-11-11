@@ -1,16 +1,15 @@
 <div *ngIf="isEmptyCategory$ | async">
 
-<div class="row">
-    <div class="col-lg-12">
-        <br>
-        {{category.title}} {{category.id}}
-        <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <br>
+            {{category.title}} {{category.id}}
+            <hr>
+        </div>
     </div>
-</div>
 
-<div class="row">
-
-    <div class="col-lg-4" *ngFor="let work of worksCategory$ | async">
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let work of worksCategory$ | async">
             <br>
             <mdb-card>
 
@@ -52,4 +51,5 @@
             </mdb-card>
         </div>
     </div>
+
 </div>

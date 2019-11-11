@@ -24,19 +24,8 @@ export class CategoryComponent implements OnInit {
   previewMode: boolean = true;
   @Input() category: Category;
 
-  worksFiltered : Array<Work>;
-
-  public EmptyCategory : boolean;
-
   ngOnInit() { 
     this.worksCategory$ = this.works$.pipe(map(w => w.filter(x=> x.category == this.category.id)))
     this.isEmptyCategory$ = this.worksCategory$.pipe(map(x => x.length > 0));
-    this.isEmptyCategory$.subscribe(x => console.log(this.category.id, x))
   }
-  
-  // this.ngOnChange(); } }
-
-  //filter(w : Work){
-  //  return w.category == this.category.id;
-  //}
 }
