@@ -3,6 +3,7 @@ import { Work } from 'src/app/global/models/Work';
 import { Category } from 'src/app/global/models/Category';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category',
@@ -12,31 +13,30 @@ import { Store, select } from '@ngrx/store';
 export class CategoryComponent implements OnInit {
 
   constructor(
-    private store: Store<{ isLoggedIn : boolean }>,
+    private store: Store<{ isLoggedIn : boolean, works: Array<Work> }>,
   ) { }
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
-  previewMode: boolean = true;
+  works$ : Observable<Array<Work>> = this.store.pipe(select('works'));
+  worksCategory$ : Observable<Array<Work>>;
+  isEmptyCategory$ : Observable<boolean>;
 
+  previewMode: boolean = true;
   @Input() category: Category;
-  @Input() allWorks : Array<Work>;
 
   worksFiltered : Array<Work>;
 
   public EmptyCategory : boolean;
 
-  ngOnChange(){ this.isEmptyCategory(); this.filter(); }
-  ngOnInit() {  this.ngOnChange(); }
-
+  ngOnInit() { 
+    this.worksCategory$ = this.works$.pipe(map(w => w.filter(x=> x.category == this.category.id)))
+    this.isEmptyCategory$ = this.worksCategory$.pipe(map(x => x.length > 0));
+    this.isEmptyCategory$.subscribe(x => console.log(this.category.id, x))
+  }
   
-  isEmptyCategory(){
-    this.EmptyCategory = this.allWorks?
-      this.allWorks.some((w : Work)=> w.category = this.category.id) :
-      true;
-  }
+  // this.ngOnChange(); } }
 
-  filter(){
-    console.log(         this.allWorks.filter((w : Work) => w.category == this.category.id));
-    this.worksFiltered = this.allWorks.filter((w : Work) => w.category == this.category.id);
-  }
+  //filter(w : Work){
+  //  return w.category == this.category.id;
+  //}
 }

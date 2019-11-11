@@ -20,16 +20,6 @@
     </div>
 
     <div class="row" *ngFor="let category of categories">
-        
-            <div class="col-lg-12">
-                <br>
-                {{category.title}}
-                <hr>
-            </div>
-
-            <app-category 
-                [category]="category" 
-                [allWorks]="worksFiltered">
-            </app-category>
+        <app-category [category]="category"></app-category>
     </div>
 </div>

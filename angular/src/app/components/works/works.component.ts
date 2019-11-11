@@ -8,6 +8,7 @@ import { Work } from 'src/app/global/models/Work';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Category } from 'src/app/global/models/Category';
+import { setWorks } from 'src/app/global/actions/works.actions';
 
 @Component({
   selector: 'app-works',
@@ -40,6 +41,7 @@ export class WorksComponent {
         work[key].toUpperCase().includes(this.searchText.toUpperCase())
       )
     );
+    this.store.dispatch(setWorks({payload: this.worksFiltered}));
   }
 
   ngOnInit(){
@@ -49,7 +51,10 @@ export class WorksComponent {
     );
 
     this.works$.toPromise().then(
-      (res : Array<Work>) => this.worksFiltered = this.worksAll = res,
+      (res : Array<Work>) => {
+        this.worksFiltered = this.worksAll = res;
+        this.store.dispatch(setWorks({payload: res}));
+      },
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );
   }

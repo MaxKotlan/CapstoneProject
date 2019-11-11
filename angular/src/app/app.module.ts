@@ -17,6 +17,7 @@ import { DeleteWarningComponent } from './components/delete-warning/delete-warni
 import { AddTextModalComponent } from './components/add-text-modal/add-text-modal.component';
 import { AddWorkModalComponent } from './components/add-work-modal/add-work-modal.component';
 import { CategoryComponent } from './components/category/category.component';
+import { WorksReducer } from './global/reducer/works.reducer';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { CategoryComponent } from './components/category/category.component';
     AppRoutingModule,
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer}),
+    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer}),
     ToastModule.forRoot()
   ],
   providers: [DataService, LoginService],
