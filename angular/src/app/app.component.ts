@@ -20,11 +20,11 @@ export class AppComponent {
     private toast : ToastService
   ){}
 
-  title = 'Dr. Kent Batcher';
+  title = 'Kenneth E. Batcher';
 
   links = [
-    {title: "Home", route: "/"},
-    {title: "Works", route: "/works"}
+    {title: "Information", route: "/", icon: "info-circle"},
+    {title: "Works", route: "/works", icon: "file-pdf"}
   ]
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn')); 

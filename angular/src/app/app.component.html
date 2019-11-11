@@ -3,19 +3,20 @@
         <links>
             <ul class="navbar-nav mr-auto">
                 <li *ngFor="let link of links" 
-                class="nav-item active"><a class="nav-link waves-light" [routerLink]="[link.route]" mdbWavesEffect>{{link.title}}</a></li>
+                class="nav-item active"><a class="nav-link waves-light" [routerLink]="[link.route]" mdbWavesEffect> 
+                        <mdb-icon fas icon="{{link.icon}}"></mdb-icon>
+                        {{link.title}}</a></li>
             </ul>
 
             <ul *ngIf="isLoggedIn$ | async" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link waves-light" [routerLink]="['/admin']" mdbWavesEffect><mdb-icon fas icon="cogs"></mdb-icon>
-                        Settings
+                    <a class="nav-link waves-light" [routerLink]="['/admin']" mdbWavesEffect>
+                        <mdb-icon fas icon="cogs"></mdb-icon>Settings
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link waves-light" (click)="logout()" mdbWavesEffect>
-                        <mdb-icon fas icon="sign-out-alt"></mdb-icon>
-                        Logout
+                        <mdb-icon fas icon="sign-out-alt"></mdb-icon>Logout
                     </a>
                 </li>
             </ul>
