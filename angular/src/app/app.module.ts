@@ -16,6 +16,7 @@ import { isLoggedInReducer } from './global/reducer/login.reducer';
 import { DeleteWarningComponent } from './components/delete-warning/delete-warning.component';
 import { AddTextModalComponent } from './components/add-text-modal/add-text-modal.component';
 import { AddWorkModalComponent } from './components/add-work-modal/add-work-modal.component';
+import { CategoryComponent } from './components/category/category.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AddWorkModalComponent } from './components/add-work-modal/add-work-moda
     AdminComponent,
     DeleteWarningComponent,
     AddTextModalComponent,
-    AddWorkModalComponent
+    AddWorkModalComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

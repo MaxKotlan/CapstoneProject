@@ -42,10 +42,6 @@ export class WorksComponent {
     );
   }
 
-  public filterByCategory(category : Number) : Array<Category>{
-    return this.worksFiltered.filter((w : Work) => w.category == category);
-  }
-
   ngOnInit(){
     this.category$.toPromise().then(
       (res : Array<Category>) => this.categories = res,
