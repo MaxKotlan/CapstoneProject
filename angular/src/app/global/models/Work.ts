@@ -7,5 +7,7 @@ export class Work {
         public path? : String,
         public description? : String,
         public dateAdded? : String 
-    ) {};
+    ) {
+        this.category = null
+    };
 }

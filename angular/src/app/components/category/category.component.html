@@ -46,7 +46,7 @@
                         <div class="md-form">
                             <textarea class="form-control md-textarea" [(ngModel)]=work.description> </textarea>
                         </div>
-                        <button mdbBtn color="default" mdbWavesEffect>Save</button> <!--(click)="updateWork(work)"-->
+                        <button mdbBtn color="default" mdbWavesEffect (click)="updateWork(work)">Save</button> <!--(click)="updateWork(work)"-->
                     </div>
                     <ng-template #notLoggedIn>
                         <mdb-card-text>{{work.description }} </mdb-card-text><br>

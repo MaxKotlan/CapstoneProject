@@ -4,7 +4,7 @@ import { Category } from 'src/app/global/models/Category';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { deleteWorks } from 'src/app/global/actions/works.actions';
+import { deleteWorks, updateWorks } from 'src/app/global/actions/works.actions';
 
 @Component({
   selector: 'app-category',
@@ -29,6 +29,10 @@ export class CategoryComponent implements OnInit {
     let filterby = this.category? this.category.id : null;
     this.worksCategory$ = this.works$.pipe(map(w => w.filter(x => x.category == filterby)))
     this.isEmptyCategory$ = this.worksCategory$.pipe(map(x => x.length > 0));
+  }
+
+  updateWork(w: Work){
+    this.store.dispatch(updateWorks({payload: w}));
   }
 
   deleteWork(w : Work){

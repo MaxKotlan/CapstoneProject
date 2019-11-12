@@ -22,8 +22,7 @@ getWork =
 addWork = 
   createEffect(() => this.actions.pipe(
     ofType(addWorks),
-    mergeMap((action) => this.dataService.addWork(action.payload)
-      .pipe(
+    mergeMap((action) => this.dataService.addWork(action.payload).pipe(
         switchMap((res : Work) => [
           addWorksSuccesfully({payload: res}),
           this.toast.success("Succesfully Added Work", "Success")
