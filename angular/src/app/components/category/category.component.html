@@ -1,0 +1,60 @@
+<div *ngIf="isEmptyCategory$ | async">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <br>
+            <div *ngIf="category; else elseBlock">
+                <mdb-icon fas icon="folder-open"></mdb-icon> {{category.title}}
+            </div>
+            <ng-template #elseBlock>
+                <mdb-icon fas icon="file"></mdb-icon> Misc
+            </ng-template>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let work of worksCategory$ | async">
+            <br>
+            <mdb-card>
+
+                
+                <app-delete-warning *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async)"
+                    [objectToDelete]="work"
+                    [deleteCallback]="deleteWork.bind(this)">
+                </app-delete-warning>
+
+                <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
+                    <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedInTitle">
+                        <div class="md-form">
+                            <input mdbInput type="text" id="worktitle" class="form-control" [(ngModel)]="work.title">
+                            <label for="worktitle" class="">Work Title</label>
+                        </div>
+                        <div class="md-form">
+                            <input mdbInput type="text" id="worklink" class="form-control" [(ngModel)]="work.path">
+                            <label for="worklink" class="">Link</label>
+                        </div>
+                    </div>
+                    <ng-template #notLoggedInTitle>
+                        <h5><strong> {{work.title}} </strong></h5>
+                    </ng-template>
+                </mdb-card-header>
+
+                <mdb-card-body cascade="true">
+
+                    <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedIn">
+                        <div class="md-form">
+                            <textarea class="form-control md-textarea" [(ngModel)]=work.description> </textarea>
+                        </div>
+                        <button mdbBtn color="default" mdbWavesEffect (click)="updateWork(work)">Save</button> <!--(click)="updateWork(work)"-->
+                    </div>
+                    <ng-template #notLoggedIn>
+                        <mdb-card-text>{{work.description }} </mdb-card-text><br>
+                        <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
+                    </ng-template>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div>
+
+</div>

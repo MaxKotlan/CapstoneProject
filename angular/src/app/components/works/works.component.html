@@ -10,54 +10,16 @@
 
     <div class="row">
         <div class="col-lg-10" *ngIf="isLoggedIn$ | async">
-                <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                    <button mdbBtn type="button" color="default" size="lg" class="waves-light" mdbWavesEffect (click)="previewMode = !previewMode"> Preview {{ !previewMode ? "On" : "Off" }} </button>
-                    <app-add-work-modal
-                        [addButtonCallback]="addWork.bind(this)"
-                    ></app-add-work-modal>
-                </div>
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                <button mdbBtn type="button" color="default" size="lg" class="waves-light" mdbWavesEffect (click)="togglePreviewMode()"> Preview </button>
+                <app-add-work-modal></app-add-work-modal>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4" *ngFor="let work of worksFiltered">
-            <br>
-            <mdb-card>
 
-                <app-delete-warning *ngIf="(isLoggedIn$ | async) && !previewMode"
-                    [objectToDelete]="work"
-                    [deleteCallback]="deleteWork.bind(this)">
-                </app-delete-warning>
-
-                <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
-                    <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedInTitle">
-                        <div class="md-form">
-                            <input mdbInput type="text" id="worktitle" class="form-control" [(ngModel)]="work.title">
-                            <label for="worktitle" class="">Work Title</label>
-                        </div>
-                        <div class="md-form">
-                            <input mdbInput type="text" id="worklink" class="form-control" [(ngModel)]="work.path">
-                            <label for="worklink" class="">Link</label>
-                        </div>
-                    </div>
-                    <ng-template #notLoggedInTitle>
-                        <h5><strong> {{work.title}} </strong></h5>
-                    </ng-template>
-                </mdb-card-header>
-
-                <mdb-card-body cascade="true">
-
-                    <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedIn">
-                        <div class="md-form">
-                            <textarea class="form-control md-textarea" [(ngModel)]=work.description> </textarea>
-                        </div>
-                        <button mdbBtn color="default" (click)="updateWork(work)" mdbWavesEffect>Save</button>
-                    </div>
-                    <ng-template #notLoggedIn>
-                        <mdb-card-text>{{work.description }} </mdb-card-text><br>
-                        <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
-                    </ng-template>
-                </mdb-card-body>
-            </mdb-card>
-        </div>
+    <div *ngFor="let category of categories">
+        <app-category [category]="category"></app-category>
     </div>
+    <!--works not in a category-->
+    <app-category [category]="null"></app-category>
 </div>

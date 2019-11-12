@@ -25,12 +25,19 @@ class User(db.Entity, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+class Category(db.Entity):
+    id = PrimaryKey(int, auto=True)
+    title = Required(str)
+    description = Optional(str)
+    works = Set('Work')
+
 class Work(db.Entity):
     id = PrimaryKey(int, auto=True)
     title = Required(str)
     path  = Required(str)
     description = Required(str)
     dateAdded = Required(datetime.datetime)
+    category = Optional(Category)
 
 class PendingUser(db.Entity):
     id = PrimaryKey(int, auto=True)
@@ -41,7 +48,7 @@ db.generate_mapping(create_tables=True)
 
 @db_session
 def populate_database():
-    w1 = Work(title="work", path="/documents", description="decription of things", dateAdded=datetime.datetime.now())
+    w1 = Work(title="work", path="/documents", description="decription of things", dateAdded=datetime.datetime.now(), category=Category(title="star"))
     u1 = User(email="admin@admin.com", password="unhashed", email_verified=True)
     u1.set_password("secret")
     t1 = Text(title="section 1", text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation", lastUpdated=datetime.datetime.now(), lastUpdatedBy="clay_james")
