@@ -8,7 +8,7 @@ import { Work } from 'src/app/global/models/Work';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Category } from 'src/app/global/models/Category';
-import { setWorks, getWorks, filterWorks } from 'src/app/global/actions/works.actions';
+import { getWorks, filterWorks } from 'src/app/global/actions/works.actions';
 import { togglePreviewMode } from 'src/app/global/actions/preview.actions';
 
 @Component({
@@ -60,6 +60,8 @@ export class WorksComponent {
     ); */
   }
 
+  
+
   addWork(work : Work){
     this.dataService.addWork(work).toPromise().then(
       (res : Work) => [
@@ -70,12 +72,13 @@ export class WorksComponent {
     );      
   }
 
+  /*
   updateWork(work : Work){
     this.dataService.updateWork(work).toPromise().then(
       (res : string) => this.toast.success("Succesfully Updated Work", "Success"),
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );   
-  }
+  }*/
 
   deleteWork(work : Work){
     this.dataService.deleteWork(work).toPromise().then(

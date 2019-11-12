@@ -14,10 +14,10 @@
             <mdb-card>
 
                 
-                <!--<app-delete-warning *ngIf="(isLoggedIn$ | async) && !previewMode"
+                <app-delete-warning *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async)"
                     [objectToDelete]="work"
                     [deleteCallback]="deleteWork.bind(this)">
-                </app-delete-warning> -->
+                </app-delete-warning>
 
                 <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
                     <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedInTitle">
@@ -41,7 +41,7 @@
                         <div class="md-form">
                             <textarea class="form-control md-textarea" [(ngModel)]=work.description> </textarea>
                         </div>
-                        <button mdbBtn color="default" (click)="updateWork(work)" mdbWavesEffect>Save</button>
+                        <button mdbBtn color="default" mdbWavesEffect>Save</button> <!--(click)="updateWork(work)"-->
                     </div>
                     <ng-template #notLoggedIn>
                         <mdb-card-text>{{work.description }} </mdb-card-text><br>

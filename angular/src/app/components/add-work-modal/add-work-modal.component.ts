@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Work } from 'src/app/global/models/Work';
+import { Store } from '@ngrx/store';
+import { addWorks } from 'src/app/global/actions/works.actions';
 
 @Component({
   selector: 'app-add-work-modal',
@@ -8,13 +10,14 @@ import { Work } from 'src/app/global/models/Work';
 })
 export class AddWorkModalComponent {
 
-  constructor() { }
+  constructor(
+    private store: Store<any>,
+  ) { }
 
   public toAddWork : Work = new Work();
-  @Input() public addButtonCallback : Function;
 
   public addButtonClicked(){
-    this.addButtonCallback(this.toAddWork);
+    this.store.dispatch(addWorks({payload: this.toAddWork}));
     this.toAddWork = new Work();
   }
 }
