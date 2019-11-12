@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-10" *ngIf="isLoggedIn$ | async">
                 <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                    <button mdbBtn type="button" color="default" size="lg" class="waves-light" mdbWavesEffect (click)="previewMode = !previewMode"> Preview {{ !previewMode ? "On" : "Off" }} </button>
+                    <button mdbBtn type="button" color="default" size="lg" class="waves-light" mdbWavesEffect (click)="togglePreviewMode()"> Preview {{ !previewMode ? "On" : "Off" }} </button>
                     <app-add-work-modal
                         [addButtonCallback]="addWork.bind(this)"
                     ></app-add-work-modal>

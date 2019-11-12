@@ -18,6 +18,7 @@ import { AddTextModalComponent } from './components/add-text-modal/add-text-moda
 import { AddWorkModalComponent } from './components/add-work-modal/add-work-modal.component';
 import { CategoryComponent } from './components/category/category.component';
 import { WorksReducer } from './global/reducer/works.reducer';
+import { previewMode } from './global/reducer/preview.reducer';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { WorksReducer } from './global/reducer/works.reducer';
     AppRoutingModule,
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer}),
+    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode}),
     ToastModule.forRoot()
   ],
   providers: [DataService, LoginService],

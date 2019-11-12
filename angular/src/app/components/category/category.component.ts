@@ -13,15 +13,15 @@ import { filter, map } from 'rxjs/operators';
 export class CategoryComponent implements OnInit {
 
   constructor(
-    private store: Store<{ isLoggedIn : boolean, works: Array<Work> }>,
+    private store: Store<any>,
   ) { }
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
+  isPreviewMode$ : Observable<boolean> = this.store.pipe(select('previewMode'));
   works$ : Observable<Array<Work>> = this.store.pipe(select('works'));
   worksCategory$ : Observable<Array<Work>>;
   isEmptyCategory$ : Observable<boolean>;
 
-  previewMode: boolean = true;
   @Input() category: Category;
 
   ngOnInit() { 

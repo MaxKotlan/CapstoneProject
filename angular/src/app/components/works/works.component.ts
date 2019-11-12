@@ -9,6 +9,7 @@ import { ToastService } from 'ng-uikit-pro-standard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Category } from 'src/app/global/models/Category';
 import { setWorks } from 'src/app/global/actions/works.actions';
+import { togglePreviewMode } from 'src/app/global/actions/preview.actions';
 
 @Component({
   selector: 'app-works',
@@ -18,11 +19,9 @@ import { setWorks } from 'src/app/global/actions/works.actions';
 export class WorksComponent {
 
   constructor( private dataService : DataService,
-    private store: Store<{ isLoggedIn : boolean }>,
+    private store: Store<any>,
     private toast: ToastService
     ) { }
-
-  public previewMode = false;
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   works$ : Observable<Array<Work>> = this.dataService.getWork();
@@ -43,6 +42,11 @@ export class WorksComponent {
     );
     this.store.dispatch(setWorks({payload: this.worksFiltered}));
   }
+
+  public togglePreviewMode(){
+    this.store.dispatch(togglePreviewMode());
+  }
+
 
   ngOnInit(){
     this.category$.toPromise().then(
