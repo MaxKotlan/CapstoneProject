@@ -8,7 +8,7 @@ import { Work } from 'src/app/global/models/Work';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Category } from 'src/app/global/models/Category';
-import { setWorks } from 'src/app/global/actions/works.actions';
+import { setWorks, getWorks, filterWorks } from 'src/app/global/actions/works.actions';
 import { togglePreviewMode } from 'src/app/global/actions/preview.actions';
 
 @Component({
@@ -31,16 +31,10 @@ export class WorksComponent {
   worksFiltered : Array<Work>;
   categories : Array<Category>;
 
-  public searchText : String;
+  public searchText : string;
 
   public search() {
-    let fields : Array<string> = Object.keys(new Work()).filter((key => key != 'id' && key != 'category'));
-    this.worksFiltered = this.worksAll.filter((work : Work) => 
-      fields.some((key : string) => 
-        work[key].toUpperCase().includes(this.searchText.toUpperCase())
-      )
-    );
-    this.store.dispatch(setWorks({payload: this.worksFiltered}));
+    this.store.dispatch(filterWorks({payload: this.searchText}));
   }
 
   public togglePreviewMode(){
@@ -54,13 +48,16 @@ export class WorksComponent {
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
     );
 
+    this.store.dispatch(getWorks());
+
+    /*
     this.works$.toPromise().then(
       (res : Array<Work>) => {
         this.worksFiltered = this.worksAll = res;
         this.store.dispatch(setWorks({payload: res}));
       },
       (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
-    );
+    ); */
   }
 
   addWork(work : Work){

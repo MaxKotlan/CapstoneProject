@@ -18,14 +18,14 @@ export class CategoryComponent implements OnInit {
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   isPreviewMode$ : Observable<boolean> = this.store.pipe(select('previewMode'));
-  works$ : Observable<Array<Work>> = this.store.pipe(select('works'));
+  works$ : Observable<Array<Work>> = this.store.pipe(select('works')).pipe(select('filteredWorks'));
   worksCategory$ : Observable<Array<Work>>;
   isEmptyCategory$ : Observable<boolean>;
 
   @Input() category: Category;
 
   ngOnInit() { 
-    this.worksCategory$ = this.works$.pipe(map(w => w.filter(x=> x.category == this.category.id)))
+    this.worksCategory$ = this.works$.pipe(map(w => w.filter(x => x.category == this.category.id)))
     this.isEmptyCategory$ = this.worksCategory$.pipe(map(x => x.length > 0));
   }
 }

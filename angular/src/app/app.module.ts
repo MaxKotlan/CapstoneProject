@@ -12,6 +12,7 @@ import { WorksComponent } from './components/works/works.component';
 import { AdminComponent } from './components/adminlogin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { isLoggedInReducer } from './global/reducer/login.reducer';
 import { DeleteWarningComponent } from './components/delete-warning/delete-warning.component';
 import { AddTextModalComponent } from './components/add-text-modal/add-text-modal.component';
@@ -19,6 +20,7 @@ import { AddWorkModalComponent } from './components/add-work-modal/add-work-moda
 import { CategoryComponent } from './components/category/category.component';
 import { WorksReducer } from './global/reducer/works.reducer';
 import { previewMode } from './global/reducer/preview.reducer';
+import { WorksEffects } from './global/effects/works.effects';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { previewMode } from './global/reducer/preview.reducer';
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
     StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode}),
+    EffectsModule.forRoot([WorksEffects]),
     ToastModule.forRoot()
   ],
   providers: [DataService, LoginService],
