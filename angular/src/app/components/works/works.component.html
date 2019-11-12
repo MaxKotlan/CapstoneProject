@@ -20,4 +20,6 @@
     <div *ngFor="let category of categories">
         <app-category [category]="category"></app-category>
     </div>
+    <!--works not in a category-->
+    <app-category [category]="null"></app-category>
 </div>

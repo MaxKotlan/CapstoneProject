@@ -3,7 +3,7 @@ import { Work } from 'src/app/global/models/Work';
 import { Category } from 'src/app/global/models/Category';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { deleteWorks } from 'src/app/global/actions/works.actions';
 
 @Component({
@@ -26,7 +26,8 @@ export class CategoryComponent implements OnInit {
   @Input() category: Category;
 
   ngOnInit() { 
-    this.worksCategory$ = this.works$.pipe(map(w => w.filter(x => x.category == this.category.id)))
+    let filterby = this.category? this.category.id : null;
+    this.worksCategory$ = this.works$.pipe(map(w => w.filter(x => x.category == filterby)))
     this.isEmptyCategory$ = this.worksCategory$.pipe(map(x => x.length > 0));
   }
 

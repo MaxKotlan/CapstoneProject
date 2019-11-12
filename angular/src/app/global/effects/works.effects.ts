@@ -3,7 +3,7 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { getWorks, getWorksSuccesfully, addWorks, addWorksSuccesfully, updateWorks, deleteWorks, updateWorksSuccesfully, deleteWorksSuccesfully } from '../actions/works.actions';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { DataService } from '../services/data.service';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { Work } from '../models/Work';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -23,28 +23,35 @@ addWork =
   createEffect(() => this.actions.pipe(
     ofType(addWorks),
     mergeMap((action) => this.dataService.addWork(action.payload)
-      .pipe(map(
-        (res : Work) => addWorksSuccesfully({payload: res}),
+      .pipe(
+        switchMap((res : Work) => [
+          addWorksSuccesfully({payload: res}),
+          this.toast.success("Succesfully Added Work", "Success")
+        ]),
         catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    )))));
+    ))));
 
 updateWork = 
   createEffect(() => this.actions.pipe(
     ofType(updateWorks),
-    mergeMap((action) => this.dataService.updateWork(action.payload)
-      .pipe(map(
-        (res : Work) => updateWorksSuccesfully({payload: res}),
+    mergeMap((action) => this.dataService.updateWork(action.payload).pipe(
+        switchMap((res : Work) => [
+          updateWorksSuccesfully({payload: res}),
+          this.toast.success("Succesfully Updated Work", "Success")
+        ]),
         catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    )))));
+    ))));
 
 deleteWork = 
   createEffect(() => this.actions.pipe(
     ofType(deleteWorks),
-    mergeMap((action) => this.dataService.deleteWork(action.payload)
-      .pipe(map(
-        (res : Work) => deleteWorksSuccesfully({payload: res}),
+    mergeMap((action) => this.dataService.deleteWork(action.payload).pipe(
+        switchMap((res : Work) => [
+            deleteWorksSuccesfully({payload: res}),
+            this.toast.success("Succesfully Deleted Work", "Success")
+        ]),
         catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    )))));
+    ))));
   
 
   constructor(

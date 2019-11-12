@@ -3,7 +3,12 @@
     <div class="row">
         <div class="col-lg-12">
             <br>
-            <mdb-icon fas icon="folder-open"></mdb-icon> {{category.title}} {{category.id}}
+            <div *ngIf="category; else elseBlock">
+                <mdb-icon fas icon="folder-open"></mdb-icon> {{category.title}} {{category.id}}
+            </div>
+            <ng-template #elseBlock>
+                <mdb-icon fas icon="file"></mdb-icon> Misc
+            </ng-template>
             <hr>
         </div>
     </div>
