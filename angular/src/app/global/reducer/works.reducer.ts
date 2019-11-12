@@ -24,7 +24,7 @@ const _worksReducer = createReducer(
 );
 
 function addWork(state, action){
-  let justAdded =  {...state, allWorks: state.allWorks.push(action.payload) }
+  let justAdded =  {...state, allWorks: [...state.allWorks, action.payload] }
   let addedAndFiltered = generateFilterState(justAdded, state.searchText);
   return addedAndFiltered;
 }

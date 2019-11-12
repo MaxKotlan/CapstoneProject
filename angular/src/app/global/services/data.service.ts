@@ -48,7 +48,6 @@ export class DataService {
   public addWork(work : Work) : Observable<Work>{
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "work";
-    console.log("About to add this work", work);
     return this.http.post<Work>(completeUrl, work, options);
   }
 

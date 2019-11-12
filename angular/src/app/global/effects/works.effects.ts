@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Injectable()
 export class WorksEffects {
 
-getWork = 
+  getWork = 
   createEffect(() => this.actions.pipe(
     ofType(getWorks),
     mergeMap(() => this.dataService.getWork()
@@ -22,36 +22,29 @@ getWork =
 addWork = 
   createEffect(() => this.actions.pipe(
     ofType(addWorks),
-    mergeMap((action) => this.dataService.addWork(action.payload).pipe(
-        switchMap((res : Work) => [
-          addWorksSuccesfully({payload: res}),
-          this.toast.success("Succesfully Added Work", "Success")
-        ]),
+    mergeMap((action) => this.dataService.addWork(action.payload)
+      .pipe(map(
+        (res : Work) => addWorksSuccesfully({payload: res}),
         catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    ))));
+    )))));
 
 updateWork = 
   createEffect(() => this.actions.pipe(
     ofType(updateWorks),
-    mergeMap((action) => this.dataService.updateWork(action.payload).pipe(
-        switchMap((res : Work) => [
-          updateWorksSuccesfully({payload: res}),
-          this.toast.success("Succesfully Updated Work", "Success")
-        ]),
+    mergeMap((action) => this.dataService.updateWork(action.payload)
+      .pipe(map(
+        (res : Work) => updateWorksSuccesfully({payload: res}),
         catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    ))));
+    )))));
 
 deleteWork = 
   createEffect(() => this.actions.pipe(
     ofType(deleteWorks),
-    mergeMap((action) => this.dataService.deleteWork(action.payload).pipe(
-        switchMap((res : Work) => [
-            deleteWorksSuccesfully({payload: res}),
-            this.toast.success("Succesfully Deleted Work", "Success")
-        ]),
+    mergeMap((action) => this.dataService.deleteWork(action.payload)
+      .pipe(map(
+        (res : Work) => deleteWorksSuccesfully({payload: res}),
         catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    ))));
-  
+    )))));
 
   constructor(
     private dataService : DataService,
