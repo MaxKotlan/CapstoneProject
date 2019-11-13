@@ -63,7 +63,7 @@ def verify():
         commit()
 
     login_user(user, remember=True)
-    return redirect(url_for('angular'))
+    return redirect('/')
 
 @login.route('/isLoggedIn', methods=["GET"])
 def isLoggedIn():

@@ -22,6 +22,7 @@ import { WorksReducer } from './global/reducer/works.reducer';
 import { previewMode } from './global/reducer/preview.reducer';
 import { WorksEffects } from './global/effects/works.effects';
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddAdminComponent } from './components/add-admin/add-admin.component';
     AddTextModalComponent,
     AddWorkModalComponent,
     CategoryComponent,
-    AddAdminComponent
+    AddAdminComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

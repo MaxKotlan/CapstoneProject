@@ -33,4 +33,9 @@ export class LoginService {
     var completeUrl : string = this.controllerUrl + "newAdmin";
     return this.http.post<string>(completeUrl, invitee, {responseType:'text' as 'json'});
   }
+
+  public register(registration : Login) : Observable<string>{
+    var completeUrl : string = this.controllerUrl + "register";
+    return this.http.post<string>(completeUrl, registration, {responseType:'text' as 'json'});
+  }
 }
