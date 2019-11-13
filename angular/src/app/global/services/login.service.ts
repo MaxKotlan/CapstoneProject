@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { TextPost } from '../models/TextPost';
+import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Login } from '../models/Login';
-import { map } from 'rxjs/operators';
+import { Invite } from '../models/Invite';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +27,10 @@ export class LoginService {
   public login(userlogin : Login) : Observable<string>{
     var completeUrl : string = this.controllerUrl + "login";
     return this.http.post<string>(completeUrl, userlogin, {responseType:'text' as 'json'});
+  }
+
+  public invite(invitee : Invite) : Observable<string>{
+    var completeUrl : string = this.controllerUrl + "newAdmin";
+    return this.http.post<string>(completeUrl, invitee, {responseType:'text' as 'json'});
   }
 }
