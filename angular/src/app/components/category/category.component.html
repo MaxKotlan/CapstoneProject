@@ -34,6 +34,10 @@
                             <input mdbInput type="text" id="worklink" class="form-control" [(ngModel)]="work.path">
                             <label for="worklink" class="">Link</label>
                         </div>
+                        <div class="md-form">
+                            <mdb-select mdbInput [options]="categoryOptions" [(ngModel)]="work.category" placeholder="Select Category"></mdb-select>
+                            <label for="category" class="">Category</label>
+                        </div>
                     </div>
                     <ng-template #notLoggedInTitle>
                         <h5><strong> {{work.title}} </strong></h5>

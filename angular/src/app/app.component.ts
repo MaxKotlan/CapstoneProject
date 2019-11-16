@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginService } from './global/services/login.service';
 import { ToastService } from 'ng-uikit-pro-standard';
@@ -47,7 +47,12 @@ export class AppComponent {
   }
 
   ngOnInit() { 
-    this.checkIfLoggedIn(); 
+    /*If running using ng-serve, automatically log user in, since flask login doesn't work cross origin*/ 
+    if(isDevMode()) { 
+      this.store.dispatch(isLoggedInSuccesfully()) 
+    } else { 
+      this.checkIfLoggedIn();  
+    } 
   };
 
 }

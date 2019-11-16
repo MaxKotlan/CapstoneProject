@@ -24,6 +24,8 @@ import { WorksEffects } from './global/effects/works.effects';
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { RegisterComponent } from './components/register/register.component';
 import { QuillModule } from 'ngx-quill'
+import { CategoryEffects } from './global/effects/category.effects';
+import { CategoryReducer } from './global/reducer/category.reducer';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,8 @@ import { QuillModule } from 'ngx-quill'
     AppRoutingModule,
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode}),
-    EffectsModule.forRoot([WorksEffects]),
+    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode, category: CategoryReducer}),
+    EffectsModule.forRoot([WorksEffects, CategoryEffects]),
     ToastModule.forRoot(),
     QuillModule.forRoot()
   ],

@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div *ngFor="let category of categories">
+    <div *ngFor="let category of (categories$ | async)">
         <app-category [category]="category"></app-category>
     </div>
     <!--works not in a category-->

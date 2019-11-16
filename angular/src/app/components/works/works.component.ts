@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Category } from 'src/app/global/models/Category';
 import { getWorks, filterWorks } from 'src/app/global/actions/works.actions';
 import { togglePreviewMode } from 'src/app/global/actions/preview.actions';
+import { getCategories } from 'src/app/global/actions/category.actions';
 
 @Component({
   selector: 'app-works',
@@ -25,11 +26,10 @@ export class WorksComponent {
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
   works$ : Observable<Array<Work>> = this.dataService.getWork();
-  category$ : Observable<Array<Category>> = this.dataService.getCategory();
+  categories$ : Observable<Array<Category>> = this.store.pipe(select('category')).pipe(select('categories'));
   
   worksAll : Array<Work>;
   worksFiltered : Array<Work>;
-  categories : Array<Category>;
 
   public searchText : string;
 
@@ -41,52 +41,8 @@ export class WorksComponent {
     this.store.dispatch(togglePreviewMode());
   }
 
-
   ngOnInit(){
-    this.category$.toPromise().then(
-      (res : Array<Category>) => this.categories = res,
-      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
-    );
-
     this.store.dispatch(getWorks());
-
-    /*
-    this.works$.toPromise().then(
-      (res : Array<Work>) => {
-        this.worksFiltered = this.worksAll = res;
-        this.store.dispatch(setWorks({payload: res}));
-      },
-      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
-    ); */
-  }
-
-  
-
-  addWork(work : Work){
-    this.dataService.addWork(work).toPromise().then(
-      (res : Work) => [
-        this.toast.success("Succesfully Added Work", "Success"),
-        this.worksAll.push(res)
-      ],
-      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
-    );      
-  }
-
-  /*
-  updateWork(work : Work){
-    this.dataService.updateWork(work).toPromise().then(
-      (res : string) => this.toast.success("Succesfully Updated Work", "Success"),
-      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
-    );   
-  }*/
-
-  deleteWork(work : Work){
-    this.dataService.deleteWork(work).toPromise().then(
-      (deletedWork : Work) => [
-        this.toast.success("Succesfully Deleted Work", "Success"),
-        this.worksAll = this.worksAll.filter((w : Work) => w.id != deletedWork.id)
-      ],
-      (err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error")
-    );   
+    this.store.dispatch(getCategories());
   }
 }

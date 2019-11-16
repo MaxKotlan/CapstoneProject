@@ -26,6 +26,10 @@
                 <label for="path" class="">Link</label>
             </div>
             <div class="md-form">
+                <mdb-select mdbInput [options]="categoryOptions" [(ngModel)]="selectedCategoryID" placeholder="Select Category"></mdb-select>
+                <label for="category" class="">Category</label>
+            </div>
+            <div class="md-form">
                 <textarea mdbInput class="form-control md-textarea" [(ngModel)]="toAddWork.description"> </textarea>
                 <label for="path" class="">Description</label>
             </div>

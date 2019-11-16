@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Work } from 'src/app/global/models/Work';
 import { Category } from 'src/app/global/models/Category';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { deleteWorks, updateWorks } from 'src/app/global/actions/works.actions';
@@ -23,13 +23,23 @@ export class CategoryComponent implements OnInit {
   worksCategory$ : Observable<Array<Work>>;
   isEmptyCategory$ : Observable<boolean>;
 
+  categories$ : Observable<Array<Category>> = this.store.pipe(select('category')).pipe(select('categories'));
+  private catSubscription : Subscription;
+  public categoryOptions : Array<any>;
+
+
   @Input() category: Category;
 
   ngOnInit() { 
     let filterby = this.category? this.category.id : null;
     this.worksCategory$ = this.works$.pipe(map(w => w.filter(x => x.category == filterby)))
     this.isEmptyCategory$ = this.worksCategory$.pipe(map(x => x.length > 0));
+    this.catSubscription = this.categories$.subscribe((categories : Array<Category>) =>
+      this.categoryOptions = categories.map((category : Category) => { return {value: category.id, label: category.title};
+    }));
   }
+
+  ngOnDestroy(){this.catSubscription.unsubscribe();}
 
   updateWork(w: Work){
     this.store.dispatch(updateWorks({payload: w}));
