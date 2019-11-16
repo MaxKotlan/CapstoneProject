@@ -23,6 +23,7 @@ import { previewMode } from './global/reducer/preview.reducer';
 import { WorksEffects } from './global/effects/works.effects';
 import { AddAdminComponent } from './components/add-admin/add-admin.component';
 import { RegisterComponent } from './components/register/register.component';
+import { QuillModule } from 'ngx-quill'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RegisterComponent } from './components/register/register.component';
     MDBBootstrapModulesPro.forRoot(),
     StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode}),
     EffectsModule.forRoot([WorksEffects]),
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    QuillModule.forRoot()
   ],
   providers: [DataService, LoginService],
   bootstrap: [AppComponent]
