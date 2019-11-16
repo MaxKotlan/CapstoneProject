@@ -10,8 +10,8 @@
                 </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6" *ngFor="let post of posts">
+    <div class="row justify-content-center">
+        <div class="col-lg-10" *ngFor="let post of posts">
             <br>
             <mdb-card>
 
@@ -20,7 +20,7 @@
                     [deleteCallback]="deleteText.bind(this)">
                 </app-delete-warning>
 
-                <mdb-card-header class="grey lighten-5 grey-text text-center py-4">
+                <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
                     <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedInTitle">
                         <div class="md-form">
                             <input mdbInput type="text" class="form-control" [(ngModel)]="post.title">
@@ -31,20 +31,16 @@
                         <h5><strong> {{post.title}} </strong></h5>
                     </ng-template>
                 </mdb-card-header>
-
-                <mdb-card-body>
-                    <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedIn">
-                        <div class="md-form">
-                            <textarea class="form-control md-textarea" [(ngModel)]=post.text> </textarea>
-                        </div>
+                <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedIn">
+                    <quill-editor [(ngModel)]="post.text"></quill-editor>
+                    <mdb-card-body>
                         <button mdbBtn color="default" (click)="updateText(post)" mdbWavesEffect>Save</button>
                         Last Edited By {{post.lastUpdatedBy}} on {{post.lastUpdated}}
-                    </div>
-                    <ng-template #notLoggedIn>
-                        <mdb-card-text class="text-black-50"> {{post.text}}
-                        </mdb-card-text>
-                    </ng-template>
-                </mdb-card-body>
+                    </mdb-card-body>
+                </div>
+                <ng-template #notLoggedIn>
+                    <quill-view [content]="post.text"></quill-view>
+                </ng-template>
             </mdb-card>
         </div>
     </div>

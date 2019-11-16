@@ -10,3 +10,22 @@ nav.navbar{
   padding-left: 5%;
   padding-right: 5%;
 }
+
+.ql-editor{
+  font-family: "Roboto", sans-serif;
+  color: #747373;
+  font-size: .9rem;
+  font-weight: 400;
+  white-space: pre-line!important;
+  min-height:300px;
+}
+
+.ql-toolbar.ql-snow{
+  border: 0px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.ql-container.ql-snow{
+  border: 0px solid #ccc;
+  border-bottom: 0px solid #ccc;
+}
