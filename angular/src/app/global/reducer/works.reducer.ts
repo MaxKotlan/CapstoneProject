@@ -46,7 +46,7 @@ function generateFilterState(state, newSearchString){
   state.searchText = newSearchString;
   let worksFiltered = state.allWorks.filter((work : Work) => 
     fields.some((key : string) => 
-      work[key].toUpperCase().includes(state.searchText.toUpperCase())
+      work[key].replace(/<\/?[^>]+(>|$)/g, "").toUpperCase().includes(state.searchText.toUpperCase())
     ));
   return { ...state, filteredWorks: worksFiltered};
 }
