@@ -35,7 +35,6 @@
                 <mdb-card-body>
                     <div *ngIf="(isLoggedIn$ | async) && !previewMode; else notLoggedIn">
                         <div class="md-form">
-                            <textarea class="form-control md-textarea" [(ngModel)]=post.text> </textarea>
                             <quill-editor [(ngModel)]="post.text"></quill-editor>
                         </div>
                         <button mdbBtn color="default" (click)="updateText(post)" mdbWavesEffect>Save</button>
