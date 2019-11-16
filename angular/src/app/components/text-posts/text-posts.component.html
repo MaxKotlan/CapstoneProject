@@ -42,8 +42,7 @@
                         Last Edited By {{post.lastUpdatedBy}} on {{post.lastUpdated}}
                     </div>
                     <ng-template #notLoggedIn>
-                        <mdb-card-text class="text-black-50"> {{post.text}}
-                        </mdb-card-text>
+                        <quill-view [content]="post.text"></quill-view>
                     </ng-template>
                 </mdb-card-body>
             </mdb-card>
