@@ -39,20 +39,16 @@
                         <h5><strong> {{work.title}} </strong></h5>
                     </ng-template>
                 </mdb-card-header>
-
-                <mdb-card-body cascade="true">
-
-                    <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedIn">
-                        <div class="md-form">
-                            <textarea class="form-control md-textarea" [(ngModel)]=work.description> </textarea>
-                        </div>
+                <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedIn">
+                    <quill-editor [(ngModel)]="work.description" #qedit></quill-editor>
+                    <mdb-card-body>
                         <button mdbBtn color="default" mdbWavesEffect (click)="updateWork(work)">Save</button> <!--(click)="updateWork(work)"-->
-                    </div>
-                    <ng-template #notLoggedIn>
-                        <mdb-card-text>{{work.description }} </mdb-card-text><br>
-                        <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
-                    </ng-template>
-                </mdb-card-body>
+                    </mdb-card-body>
+                </div>
+                <ng-template #notLoggedIn>
+                    <quill-view [content]="work.description"></quill-view>
+                    <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
+                </ng-template>
             </mdb-card>
         </div>
     </div>
