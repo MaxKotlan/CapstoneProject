@@ -27,13 +27,9 @@ def addWork():
         title=json['title'], 
         path=json['path'], 
         description=json['description'], 
-        dateAdded=datetime.datetime.now()
+        dateAdded=datetime.datetime.now(),
+        category=json['category']
       )
-
-
-      cat = Category.get(id=json['category'])
-      new_work.category=cat
-
       commit()
 
     return jsonify(new_work.to_dict())
@@ -51,7 +47,7 @@ def updateWork():
       to_update.title = json['title']
       to_update.path = json['path']
       to_update.description = json['description']
-
+      to_update.category=json['category']
       commit()
 
     return jsonify(to_update.to_dict())
