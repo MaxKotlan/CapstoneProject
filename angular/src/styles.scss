@@ -15,5 +15,16 @@ nav.navbar{
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   color: grey;
+  white-space: pre-line!important;
   min-height:300px;
+}
+
+.ql-toolbar.ql-snow{
+  border: 0px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.ql-container.ql-snow{
+  border: 0px solid #ccc;
+  border-bottom: 0px solid #ccc;
 }
