@@ -47,7 +47,9 @@
                 </div>
                 <ng-template #notLoggedIn>
                     <quill-view [content]="work.description"></quill-view>
-                    <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
+                    <mdb-card-body>
+                        <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
+                    </mdb-card-body>
                 </ng-template>
             </mdb-card>
         </div>
