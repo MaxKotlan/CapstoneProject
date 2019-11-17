@@ -20,7 +20,7 @@
                     [deleteCallback]="deleteText.bind(this)">
                 </app-delete-warning>
 
-                <mdb-card-header class="white text-primary text-center py-1">
+                <mdb-card-header class="white text-black-50 text-center py-1">
                     <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedInTitle">
                         <div class="md-form">
                             <input mdbInput type="text" class="form-control" [(ngModel)]="post.title">
