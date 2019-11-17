@@ -25,6 +25,7 @@ export class WorksComponent {
     ) { }
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
+  isPreviewMode$ : Observable<boolean> = this.store.pipe(select('previewMode'));
   works$ : Observable<Array<Work>> = this.dataService.getWork();
   categories$ : Observable<Array<Category>> = this.store.pipe(select('category')).pipe(select('categories'));
   
