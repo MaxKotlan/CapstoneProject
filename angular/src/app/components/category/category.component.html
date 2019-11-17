@@ -29,16 +29,16 @@
                 <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
                     <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedInTitle">
                         <div class="md-form">
-                            <input mdbInput type="text" id="worktitle" class="form-control" [(ngModel)]="work.title">
-                            <label for="worktitle" class="">Work Title</label>
+                            <input mdbInput type="text" class="form-control" [(ngModel)]="work.title">
+                            <label class="">Work Title</label>
                         </div>
                         <div class="md-form">
-                            <input mdbInput type="text" id="worklink" class="form-control" [(ngModel)]="work.path">
-                            <label for="worklink" class="">Link</label>
+                            <input mdbInput type="text" class="form-control" [(ngModel)]="work.path">
+                            <label class="">Link</label>
                         </div>
                         <div class="md-form">
                             <mdb-select mdbInput [options]="categoryOptions" [(ngModel)]="work.category" placeholder="Select Category"></mdb-select>
-                            <label for="category" class="">Category</label>
+                            <label class="">Category</label>
                         </div>
                     </div>
                     <ng-template #notLoggedInTitle>
