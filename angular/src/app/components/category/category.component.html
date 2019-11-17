@@ -26,7 +26,7 @@
                     [deleteCallback]="deleteWork.bind(this)">
                 </app-delete-warning>
 
-                <mdb-card-header class="grey lighten-5 grey-text text-center py-1">
+                <mdb-card-header class="white text-primary text-center p-1">
                     <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedInTitle">
                         <div class="md-form">
                             <input mdbInput type="text" class="form-control" [(ngModel)]="work.title">

@@ -6,6 +6,7 @@ import { TextPost } from '../../global/models/TextPost';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { Store, select } from '@ngrx/store';
+import { togglePreviewMode } from 'src/app/global/actions/preview.actions';
 
 @Component({
   selector: 'app-text-posts',
@@ -16,15 +17,18 @@ export class TextPostsComponent implements OnInit{
 
   constructor(
     private dataService  : DataService,
-    private store: Store<{ isLoggedIn : boolean }>,
+    private store: Store<any>,
     private toast: ToastService,
     ) { }
 
-  public previewMode = false;
-
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn'));
+  isPreviewMode$ : Observable<boolean> = this.store.pipe(select('previewMode'));
   posts$ : Observable<Array<TextPost>> = this.dataService.getText();
   posts : Array<TextPost>;
+
+  public togglePreviewMode(){
+    this.store.dispatch(togglePreviewMode());
+  }
 
   ngOnInit(){
     this.posts$.toPromise().then(
