@@ -60,11 +60,10 @@ export class AppComponent {
     this.loadDataIntoApp();
 
     /*If running using ng-serve, automatically log user in, since flask login doesn't work cross origin*/ 
-    if(isDevMode()) { 
+    if(isDevMode()) 
       this.store.dispatch(isLoggedInSuccesfully()) 
-    } else { 
-      this.checkIfLoggedIn();  
-    } 
+    else 
+      this.checkIfLoggedIn();   
   };
 
 }

@@ -9,7 +9,7 @@ import { TextPostsComponent } from './components/text-posts/text-posts.component
 import { DataService } from './global/services/data.service';
 import { LoginService } from './global/services/login.service';
 import { WorksComponent } from './components/works/works.component';
-import { AdminComponent } from './components/adminlogin/admin.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
