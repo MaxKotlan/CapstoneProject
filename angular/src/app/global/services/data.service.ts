@@ -28,7 +28,7 @@ export class DataService {
   }
 
   public updateText(text : TextPost) : Observable<TextPost>{
-    const options = this.httpOptions2();
+    const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "text";
     return this.http.put<TextPost>(completeUrl, text, options);
   }
@@ -67,15 +67,6 @@ export class DataService {
     const options = this.httpOptions();
     var completeUrl : string = this.controllerUrl + "category";
     return this.http.get<Array<Category>>(completeUrl, options);
-  }
-
-  private httpOptions2() {
-    return {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-        }),
-        responseType:'text' as 'json'
-    };
   }
 
   private httpOptions() {

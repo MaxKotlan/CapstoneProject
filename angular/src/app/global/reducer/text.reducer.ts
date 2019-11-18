@@ -13,21 +13,21 @@ export const initialState : State = {
 const _textReducer = createReducer(
 initialState,
     on(getTextSuccesfully, (state,action) => {return {...state, allText: action.payload }}),
-    on(addTextSuccesfully, (state,action) => addWork(state, action)),
-    on(updateTextSuccesfully, (state,action) => updateWork(state, action)),
-    on(deleteTextSuccesfully, (state,action) => deleteWork(state, action)),
+    on(addTextSuccesfully, (state,action) => addText(state, action)),
+    on(updateTextSuccesfully, (state,action) => updateText(state, action)),
+    on(deleteTextSuccesfully, (state,action) => deleteText(state, action)),
 );
 
-function addWork(state, action){
+function addText(state, action){
     return {...state, allText: [...state.allText, action.payload] };
 }
   
-function updateWork(state, action){
+function updateText(state, action){
     //rn just returns existing because it doesnt matter as much for update{...state, allWorks: state.allWorks.find((w : Work) => w.id != action.payload.id) }
     return state;
 }
   
-function deleteWork(state, action){
+function deleteText(state, action){
     return {...state, allText: state.allText.filter((w : TextPost) => w.id != action.payload.id) };
 }
   
