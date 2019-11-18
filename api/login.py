@@ -27,9 +27,12 @@ def newAdmin():
 
     email = request.json['email']
     validation_key = uuid.uuid4().hex
+
     with db_session:
-        pendingUser = PendingUser(email=email, validation_key=validation_key)
-        commit()
+        pendingUser = get(u for u in PendingUser if u.email==email)
+        if pendingUser is None:
+            pendingUser = PendingUser(email=email, validation_key=validation_key)
+            commit()
 
     EmailHelper.send_invite(email)
     return "success"
