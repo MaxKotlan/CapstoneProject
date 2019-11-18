@@ -29,6 +29,7 @@ import { CategoryReducer } from './global/reducer/category.reducer';
 import { TextReducer } from './global/reducer/text.reducer';
 import { TextEffects } from './global/effects/text.effects';
 import { ToastEffects } from './global/effects/toast.effects';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
