@@ -30,6 +30,8 @@ import { TextReducer } from './global/reducer/text.reducer';
 import { TextEffects } from './global/effects/text.effects';
 import { ToastEffects } from './global/effects/toast.effects';
 import { LoginComponent } from './components/login/login.component';
+import { WorkInstanceDisplaymodeComponent } from './components/work-instance-displaymode/work-instance-displaymode.component';
+import { WorkInstanceEditmodeComponent } from './components/work-instance-editmode/work-instance-editmode.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { LoginComponent } from './components/login/login.component';
     CategoryComponent,
     AddAdminComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    WorkInstanceDisplaymodeComponent,
+    WorkInstanceEditmodeComponent
   ],
   imports: [
     BrowserModule,

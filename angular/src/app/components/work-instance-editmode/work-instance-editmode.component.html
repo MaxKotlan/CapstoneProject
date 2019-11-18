@@ -1,0 +1,30 @@
+<mdb-card>
+       
+    <app-delete-warning
+        [objectToDelete]="work"
+        [deleteCallback]="deleteWork.bind(this)">
+    </app-delete-warning>
+
+    <form>
+        <mdb-card-header class="white text-black-50 text-center p-1">
+            <div class="pl-3 pr-3">
+            <div class="md-form">
+                <input mdbInput type="text" class="form-control" name="title" [(ngModel)]="work.title">
+                <label class="">Work Title</label>
+            </div>
+            <div class="md-form">
+                <input mdbInput type="text" class="form-control" name="link" [(ngModel)]="work.path">
+                <label class="">Link</label>
+            </div>
+            <div class="md-form">
+                <mdb-select mdbInput [options]="categorySelector$ | async" name="category" [(ngModel)]="work.category" placeholder="Select Category"></mdb-select>
+                <label class="">Category</label>
+            </div>
+            </div>
+        </mdb-card-header>
+        <quill-editor [(ngModel)]="work.description" name="editor"></quill-editor>
+        <mdb-card-body>
+            <button mdbBtn color="default" mdbWavesEffect name="save" (click)="updateWork(work)">Save</button> <!--(click)="updateWork(work)"-->
+        </mdb-card-body>
+    </form>
+</mdb-card>

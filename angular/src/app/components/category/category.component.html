@@ -14,54 +14,22 @@
     </div>
 
     <div class="row justify-content-md-end">
-    <div class="col-lg-11">
-    <div class="row">
-        <div class="col-lg-4" *ngFor="let work of worksCategory$ | async">
-            <br>
-            <mdb-card>
-
-                
-                <app-delete-warning *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async)"
-                    [objectToDelete]="work"
-                    [deleteCallback]="deleteWork.bind(this)">
-                </app-delete-warning>
-
-                <mdb-card-header class="white text-black-50 text-center p-1">
-                    <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedInTitle">
-                        <div class="md-form">
-                            <input mdbInput type="text" class="form-control" [(ngModel)]="work.title">
-                            <label class="">Work Title</label>
-                        </div>
-                        <div class="md-form">
-                            <input mdbInput type="text" class="form-control" [(ngModel)]="work.path">
-                            <label class="">Link</label>
-                        </div>
-                        <div class="md-form">
-                            <mdb-select mdbInput [options]="categoryOptions" [(ngModel)]="work.category" placeholder="Select Category"></mdb-select>
-                            <label class="">Category</label>
-                        </div>
+        <div class="col-lg-11">
+            <div class="row">
+                <div class="col-lg-4" *ngFor="let work of worksCategory$ | async">
+                    <br>  
+                    <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedIn">
+                        <app-work-instance-editmode [work]="work"></app-work-instance-editmode>
                     </div>
-                    <ng-template #notLoggedInTitle>
-                        <h5><strong> {{work.title}} </strong></h5>
+                    <ng-template #notLoggedIn>
+                        <app-work-instance-displaymode [work]="work"></app-work-instance-displaymode>
                     </ng-template>
-                </mdb-card-header>
-                <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedIn">
-                    <quill-editor [(ngModel)]="work.description" #qedit></quill-editor>
-                    <mdb-card-body>
-                        <button mdbBtn color="default" mdbWavesEffect (click)="updateWork(work)">Save</button> <!--(click)="updateWork(work)"-->
-                    </mdb-card-body>
                 </div>
-                <ng-template #notLoggedIn>
-                    <quill-view [content]="work.description"></quill-view>
-                    <mdb-card-body>
-                        <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
-                    </mdb-card-body>
-                </ng-template>
-            </mdb-card>
+            </div>
         </div>
     </div>
-</div>
-</div>
-<br><br>        <br><br>
+
+    <br><br>
+    <br><br>
 
 </div>
