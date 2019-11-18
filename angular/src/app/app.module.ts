@@ -28,7 +28,7 @@ import { CategoryEffects } from './global/effects/category.effects';
 import { CategoryReducer } from './global/reducer/category.reducer';
 import { TextReducer } from './global/reducer/text.reducer';
 import { TextEffects } from './global/effects/text.effects';
-import { LoginComponent } from './components/login/login.component';
+import { ToastEffects } from './global/effects/toast.effects';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
     StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode, category: CategoryReducer, textposts: TextReducer}),
-    EffectsModule.forRoot([WorksEffects, CategoryEffects, TextEffects]),
+    EffectsModule.forRoot([WorksEffects, CategoryEffects, TextEffects, ToastEffects]),
     ToastModule.forRoot(),
     QuillModule.forRoot()
   ],

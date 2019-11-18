@@ -6,6 +6,8 @@ import { DataService } from '../services/data.service';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { Work } from '../models/Work';
 import { HttpErrorResponse } from '@angular/common/http';
+import { toastSuccessNotification, toastErrorNotification } from '../actions/toast.actions';
+import { of } from 'rxjs';
 
 @Injectable()
 export class WorksEffects {
@@ -21,30 +23,39 @@ export class WorksEffects {
 
 addWork = 
   createEffect(() => this.actions.pipe(
-    ofType(addWorks),
-    mergeMap((action) => this.dataService.addWork(action.payload)
-      .pipe(map(
-        (res : Work) => addWorksSuccesfully({payload: res}),
-        catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    )))));
+  ofType(addWorks),
+  map((action : any) => action.payload),
+  switchMap(payload => this.dataService.addWork(payload)),
+  switchMap((res : Work) => [
+    addWorksSuccesfully({payload: res}),
+    toastSuccessNotification({header: "You have added " + res.title, body: "Success"})
+  ]),
+  catchError((err : HttpErrorResponse) => of(toastErrorNotification({header: "Error", body: err.statusText})))
+  ));
 
 updateWork = 
   createEffect(() => this.actions.pipe(
-    ofType(updateWorks),
-    mergeMap((action) => this.dataService.updateWork(action.payload)
-      .pipe(map(
-        (res : Work) => updateWorksSuccesfully({payload: res}),
-        catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    )))));
+  ofType(updateWorks),
+  map((action : any) => action.payload),
+  switchMap(payload => this.dataService.updateWork(payload)),
+  switchMap((res : Work) => [
+    updateWorksSuccesfully({payload: res}),
+    toastSuccessNotification({header: "You have updated " + res.title, body: "Success"})
+  ]),
+  catchError((err : HttpErrorResponse) => of(toastErrorNotification({header: "Error", body: err.statusText})))
+  ));
 
 deleteWork = 
   createEffect(() => this.actions.pipe(
-    ofType(deleteWorks),
-    mergeMap((action) => this.dataService.deleteWork(action.payload)
-      .pipe(map(
-        (res : Work) => deleteWorksSuccesfully({payload: res}),
-        catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
-    )))));
+  ofType(deleteWorks),
+  map((action : any) => action.payload),
+  switchMap(payload => this.dataService.deleteWork(payload)),
+  switchMap((res : Work) => [
+    deleteWorksSuccesfully({payload: res}),
+    toastSuccessNotification({header: "You have deleted " + res.title, body: "Success"})
+  ]),
+  catchError((err : HttpErrorResponse) => of(toastErrorNotification({header: "Error", body: err.statusText})))
+  ));
 
   constructor(
     private dataService : DataService,
