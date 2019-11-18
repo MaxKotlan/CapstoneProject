@@ -5,6 +5,9 @@ import { ToastService } from 'ng-uikit-pro-standard';
 import { fadeAnimation } from './animations/fade.animation';
 import { Store, select } from '@ngrx/store';
 import { isLoggedInSuccesfully, isLoggedOutSuccesfully } from './global/actions/login.actions';
+import { getText } from './global/actions/text.actions';
+import { getWorks } from './global/actions/works.actions';
+import { getCategories } from './global/actions/category.actions';
 
 @Component({
   selector: 'app-root',
@@ -46,7 +49,16 @@ export class AppComponent {
     );
   }
 
+  /*Pulls in data from all apis on inital load. Saves between page switching this way*/
+  public loadDataIntoApp(){
+    this.store.dispatch(getText());
+    this.store.dispatch(getWorks());
+    this.store.dispatch(getCategories());
+  }
+
   ngOnInit() { 
+    this.loadDataIntoApp();
+
     /*If running using ng-serve, automatically log user in, since flask login doesn't work cross origin*/ 
     if(isDevMode()) { 
       this.store.dispatch(isLoggedInSuccesfully()) 

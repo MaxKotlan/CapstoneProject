@@ -41,9 +41,4 @@ export class WorksComponent {
   public togglePreviewMode(){
     this.store.dispatch(togglePreviewMode());
   }
-
-  ngOnInit(){
-    this.store.dispatch(getWorks());
-    this.store.dispatch(getCategories());
-  }
 }

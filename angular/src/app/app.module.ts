@@ -26,6 +26,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { QuillModule } from 'ngx-quill'
 import { CategoryEffects } from './global/effects/category.effects';
 import { CategoryReducer } from './global/reducer/category.reducer';
+import { TextReducer } from './global/reducer/text.reducer';
+import { TextEffects } from './global/effects/text.effects';
 
 @NgModule({
   declarations: [
@@ -46,8 +48,8 @@ import { CategoryReducer } from './global/reducer/category.reducer';
     AppRoutingModule,
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode, category: CategoryReducer}),
-    EffectsModule.forRoot([WorksEffects, CategoryEffects]),
+    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode, category: CategoryReducer, textposts: TextReducer}),
+    EffectsModule.forRoot([WorksEffects, CategoryEffects, TextEffects]),
     ToastModule.forRoot(),
     QuillModule.forRoot()
   ],

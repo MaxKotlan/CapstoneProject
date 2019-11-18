@@ -27,10 +27,10 @@ export class DataService {
     return this.http.post<TextPost>(completeUrl, text, options);
   }
 
-  public updateText(text : TextPost) : Observable<string>{
+  public updateText(text : TextPost) : Observable<TextPost>{
     const options = this.httpOptions2();
     var completeUrl : string = this.controllerUrl + "text";
-    return this.http.put<string>(completeUrl, text, options);
+    return this.http.put<TextPost>(completeUrl, text, options);
   }
 
   public deleteText(text : TextPost) : Observable<TextPost>{
