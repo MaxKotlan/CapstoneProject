@@ -7,14 +7,6 @@
                         <mdb-icon fas icon="{{link.icon}}"></mdb-icon>
                         {{link.title}}</a></li>
             </ul>
-
-            <ul *ngIf="!(isLoggedIn$ | async)" class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link waves-light" (click)="loginModal.show()" mdbWavesEffect>
-                        <mdb-icon fas icon="sign-in-alt"></mdb-icon>Login
-                    </a>
-                </li>
-            </ul>
             <ul *ngIf="isLoggedIn$ | async" class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link waves-light" [routerLink]="['/admin']" [routerLinkActive]="['is-active']" mdbWavesEffect>
@@ -30,12 +22,6 @@
 
         </links>
 </mdb-navbar>
-
-<div mdbModal #loginModal="mdbModal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-      <app-admin></app-admin>
-  </div>
-</div>
 
 <br>
 

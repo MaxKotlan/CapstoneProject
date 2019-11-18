@@ -28,6 +28,7 @@ import { CategoryEffects } from './global/effects/category.effects';
 import { CategoryReducer } from './global/reducer/category.reducer';
 import { TextReducer } from './global/reducer/text.reducer';
 import { TextEffects } from './global/effects/text.effects';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TextEffects } from './global/effects/text.effects';
     AddWorkModalComponent,
     CategoryComponent,
     AddAdminComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from '../../global/services/login.service';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Invite } from 'src/app/global/models/Invite';
 
 @Component({
-  selector: 'app-add-admin',
+  selector: 'add-admin',
   templateUrl: './add-admin.component.html',
   styleUrls: ['./add-admin.component.scss']
 })

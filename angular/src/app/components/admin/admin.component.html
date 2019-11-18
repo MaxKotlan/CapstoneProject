@@ -1,20 +1,8 @@
-<div class="modal-content">
-    <div class="modal-header d-flex justify-content-center">
-        <h5>Login</h5>
-    </div>    
-    <div class="modal-body">
-        <div class="md-form">
-            <input type="email" id="email" class="form-control" [(ngModel)]="user.email" mdbInput>
-            <label for="email" class="">Email</label>
-        </div>
-        <div class="md-form">
-            <input id="password" type="password" class="form-control" [(ngModel)]="user.password" mdbInput>
-            <label for="password" class="">Password</label>
-        </div>
+<div class="row justify-content-center">
+    <div *ngIf="!(isLoggedIn$ | async)" class="col-lg-4 p-4">
+        <login></login>
     </div>
-    <div class="modal-footer justify-content-center">
-        <button mdbBtn color="primary" mdbWavesEffect type="submit" (click)="LogIn()">
-            Login<mdb-icon fas icon="sign-in-alt" class="ml-1"></mdb-icon>
-        </button>
+    <div *ngIf="isLoggedIn$ | async" class="col-lg-4 p-4">
+        <add-admin></add-admin>
     </div>
 </div>

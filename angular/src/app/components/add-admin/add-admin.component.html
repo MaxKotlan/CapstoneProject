@@ -1,20 +1,16 @@
-<div class="row justify-content-center">
-    <div class="col-lg-4 p-4">
-            <mdb-card>
-                <mdb-card-header class="grey lighten-5 grey-text text-center py-4">
-                    <h5>
-                        <strong>Invite Admin</strong>
-                    </h5>
-                </mdb-card-header>
-                    <mdb-card-body class="px-lg-5 pt-0">
-                        <div class="md-form">
-                            <input type="email" class="form-control" [(ngModel)]="invitee.email" mdbInput>
-                            <label>Invitee Email</label>
-                        </div>
-                        <button mdbBtn color="rgba-black-slight" outline="false" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
-                            type="submit" (click)="Invite()">Invite</button>
-                        
-                    </mdb-card-body>
-            </mdb-card>
-    </div>
-</div>
+<mdb-card>
+    <mdb-card-header class="grey lighten-5 grey-text text-center py-4">
+        <h5>
+            <strong>Invite Admin</strong>
+        </h5>
+    </mdb-card-header>
+        <mdb-card-body class="px-lg-5 pt-0">
+            <div class="md-form">
+                <input type="email" class="form-control" [(ngModel)]="invitee.email" mdbInput>
+                <label>Invitee Email</label>
+            </div>
+            <button mdbBtn color="rgba-black-slight" outline="false" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+                type="submit" (click)="Invite()">Invite</button>
+            
+        </mdb-card-body>
+</mdb-card>

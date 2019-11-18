@@ -3,7 +3,12 @@ router-outlet ~ * {
     position: absolute;
     height: 100%;
     width: 100%;
-  }
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 
 nav.navbar{
