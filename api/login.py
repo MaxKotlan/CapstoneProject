@@ -1,4 +1,4 @@
-from flask import Blueprint, request, abort, url_for, redirect
+from flask import Blueprint, request, abort, url_for, redirect, current_app
 from flask_login import login_required, current_user, login_user, logout_user
 from database import *
 import uuid
@@ -34,7 +34,7 @@ def newAdmin():
             pendingUser = PendingUser(email=email, validation_key=validation_key)
             commit()
 
-    EmailHelper.send_invite(email)
+    EmailHelper.send_invite(email, current_app.config)
     return "success"
 
 @login.route('/register', methods=["POST"])
@@ -52,7 +52,7 @@ def register():
         newUser.set_password(password)
         commit()
 
-    EmailHelper.send_verification(email, pendingUser.validation_key)
+    EmailHelper.send_verification(email, pendingUser.validation_key, current_app.config)
     return "success"
 
 @login.route('/verify', methods=["GET"])
