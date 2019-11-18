@@ -4,7 +4,7 @@ invite = """\
 Subject: Dr.Ken Batcher Memorial Website Invite
 
 You have been invited to be an administrator on the Dr.Ken Batcher Memorial Website.
-Please go to {}register/ to register."""
+Please go to {}register to register."""
 
 verification = """\
 Subject: Dr.Ken Batcher Memorial Website Email Verification
