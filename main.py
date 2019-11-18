@@ -25,7 +25,8 @@ app.register_blueprint(category, url_prefix='/api')
 
 CORS(app, support_credentials=True)
 
-app.config['SECRET_KEY'] = 'yeet'
+app.config.from_object('config')
+app.config.from_envvar('CONFIG_PATH',silent=True)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
