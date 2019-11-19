@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { deleteWorks, updateWorks } from 'src/app/global/actions/works.actions';
+import { categoryUpdated } from 'src/app/global/actions/category.actions';
 
 @Component({
   selector: 'app-category',
@@ -24,6 +25,10 @@ export class CategoryComponent implements OnInit {
   isEmptyCategory$ : Observable<boolean>;
 
   @Input() category: Category;
+
+  ngChange(){
+    this.store.dispatch(categoryUpdated({payload: this.category}));
+  }
 
   ngOnInit() { 
     let filterby = this.category? this.category.id : null;
