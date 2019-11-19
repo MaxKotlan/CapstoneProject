@@ -32,6 +32,8 @@ import { ToastEffects } from './global/effects/toast.effects';
 import { LoginComponent } from './components/login/login.component';
 import { WorkInstanceDisplaymodeComponent } from './components/work-instance-displaymode/work-instance-displaymode.component';
 import { WorkInstanceEditmodeComponent } from './components/work-instance-editmode/work-instance-editmode.component';
+import { CategoryEditmodeComponent } from './components/category-editmode/category-editmode.component';
+import { CategoryDisplaymodeComponent } from './components/category-displaymode/category-displaymode.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { WorkInstanceEditmodeComponent } from './components/work-instance-editmo
     RegisterComponent,
     LoginComponent,
     WorkInstanceDisplaymodeComponent,
-    WorkInstanceEditmodeComponent
+    WorkInstanceEditmodeComponent,
+    CategoryEditmodeComponent,
+    CategoryDisplaymodeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<mdb-card class="p-3">
+
+<div class="md-form">
+    <input mdbInput type="text" class="form-control" name="cat-name" [(ngModel)]="category.title" (ngModelChange)="ngChange()">
+    <label class="">Category Name</label>
+</div> 
+
+<quill-editor [(ngModel)]="category.description" name="editor"></quill-editor>
+
+</mdb-card>

@@ -26,10 +26,6 @@ export class CategoryComponent implements OnInit {
 
   @Input() category: Category;
 
-  ngChange(){
-    this.store.dispatch(categoryUpdated({payload: this.category}));
-  }
-
   ngOnInit() { 
     let filterby = this.category? this.category.id : null;
     this.worksCategory$ = this.works$.pipe(map(w => w.filter(x => x.category == filterby)))

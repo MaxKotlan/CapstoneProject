@@ -13,27 +13,17 @@
                 </a> 
                 </span>
                 <div mdbCollapse [isCollapsed]="false" #categoryInfo="bs-collapse" style="padding: 0;">
-                    <!--
-                    <div class="md-form">
-                        <input mdbInput type="text" class="form-control" name="link" [(ngModel)]="category.title" (ngModelChange)="ngChange()">
-                        <label class="">Category Name</label>
-                    </div> -->
                     <br>
-                    <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proidentAnim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                    <div *ngIf="(isLoggedIn$ | async) && !(isPreviewMode$ | async); else notLoggedInCategory">
+                        <app-category-editmode [category]="category"></app-category-editmode>
+                    </div>
+                    <ng-template #notLoggedInCategory>
+                        <app-category-displaymode [category]="category"></app-category-displaymode>
+                    </ng-template>
                 </div>
             </div>
             <ng-template #elseBlock>
-                <mdb-icon fas icon="file"></mdb-icon> Misc
+                <h3 style="display: inline;"><mdb-icon fas icon="file"></mdb-icon> Misc</h3>
             </ng-template>
             <hr>
         </div>
