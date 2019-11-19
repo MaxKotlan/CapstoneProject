@@ -1,0 +1,9 @@
+<mdb-card>
+    <mdb-card-header class="white text-black-50 text-center p-1">
+    <h5><strong> {{work.title}} </strong></h5>
+    </mdb-card-header>
+    <quill-view [content]="work.description"></quill-view>
+    <mdb-card-body>
+        <a href={{work.path}} mdbBtn color="primary" target="_blank" mdbWavesEffect class="col-lg-12">View Document</a>
+    </mdb-card-body>
+</mdb-card>

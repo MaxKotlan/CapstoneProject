@@ -1,0 +1,14 @@
+<mdb-card class="p-1">
+
+<div class="md-form">
+    <input mdbInput type="text" class="form-control" name="cat-name" [(ngModel)]="category.title" (ngModelChange)="ngChange()">
+    <label class="">Category Name</label>
+</div> 
+
+<quill-editor [(ngModel)]="category.description" name="editor"></quill-editor>
+
+<mdb-card-body>
+    <button mdbBtn color="default" mdbWavesEffect name="save" (click)="updateCategory()">Save</button>
+</mdb-card-body>
+
+</mdb-card>
