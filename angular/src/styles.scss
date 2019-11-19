@@ -25,6 +25,10 @@ nav.navbar{
   min-height:300px;
 }
 
+.no-min-width .ql-editor{
+  min-height: 0px !important;
+}
+
 .ql-toolbar.ql-snow{
   border: 0px solid #ccc;
   border-bottom: 1px solid #ccc;

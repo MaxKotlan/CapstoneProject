@@ -69,6 +69,12 @@ export class DataService {
     return this.http.get<Array<Category>>(completeUrl, options);
   }
 
+  public updateCategory(category : Category) : Observable<Category>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "category";
+    return this.http.put<Category>(completeUrl, category, options);
+  }
+
   private httpOptions() {
     return {
         headers: new HttpHeaders({

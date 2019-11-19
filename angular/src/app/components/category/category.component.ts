@@ -1,11 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Work } from 'src/app/global/models/Work';
 import { Category } from 'src/app/global/models/Category';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { deleteWorks, updateWorks } from 'src/app/global/actions/works.actions';
-import { categoryUpdated } from 'src/app/global/actions/category.actions';
 
 @Component({
   selector: 'app-category',
