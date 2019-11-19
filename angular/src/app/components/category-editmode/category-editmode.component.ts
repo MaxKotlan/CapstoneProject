@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { Category } from 'src/app/global/models/Category';
 import { Store } from '@ngrx/store';
-import { categoryChanged, updateCategory } from 'src/app/global/actions/category.actions';
+import { categoryChanged, updateCategory, deleteCategory } from 'src/app/global/actions/category.actions';
 
 @Component({
   selector: 'app-category-editmode',
@@ -18,8 +18,11 @@ export class CategoryEditmodeComponent {
     this.store.dispatch(categoryChanged({payload: this.category}));
   }
 
+  deleteCategory(){
+    this.store.dispatch(deleteCategory({payload: this.category}));
+  }
+
   updateCategory(){
-    console.log("Updating category");
     this.store.dispatch(updateCategory({payload: this.category}));
   }
 

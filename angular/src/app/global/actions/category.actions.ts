@@ -8,8 +8,10 @@ export  const getCategoriesSuccesfully = createAction('[Category] getCategoriesS
 export  const addCategory = createAction('[Category] addCategory', props<{ payload:  Category; }>());
 export  const addCategorySuccesfully = createAction('[Category] addCategorySuccesfully', props<{ payload:  Category; }>());
 
-
 export  const updateCategory = createAction('[Category] updateCategory', props<{ payload:  Category; }>());
 export  const updateCategorySuccesfully = createAction('[Category] updateCategorySuccesfully', props<{ payload:  Category; }>());
+
+export  const deleteCategory = createAction('[Category] deleteCategory', props<{ payload:  Category; }>());
+export  const deleteCategorySuccesfully = createAction('[Category] deleteCategorySuccesfully', props<{ payload:  Category; }>());
 
 export  const categoryChanged = createAction('[Category] categoryChanged', props<{ payload:  Category; }>());

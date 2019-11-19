@@ -1,5 +1,10 @@
 <mdb-card class="p-1">
 
+<app-delete-warning
+    [objectToDelete]="category"
+    [deleteCallback]="deleteCategory.bind(this)">
+</app-delete-warning>
+
 <div class="md-form">
     <input mdbInput type="text" class="form-control" name="cat-name" [(ngModel)]="category.title" (ngModelChange)="ngChange()">
     <label class="">Category Name</label>

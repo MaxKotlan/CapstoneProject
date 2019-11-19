@@ -81,6 +81,12 @@ export class DataService {
     return this.http.put<Category>(completeUrl, category, options);
   }
 
+  public deleteCategory(category : Category) : Observable<Category>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "category/" + category.id;
+    return this.http.delete<Category>(completeUrl, options);
+  }
+
   private httpOptions() {
     return {
         headers: new HttpHeaders({
