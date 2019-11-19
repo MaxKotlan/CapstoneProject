@@ -3,7 +3,7 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { DataService } from '../services/data.service';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getCategories, getCategoriesSuccesfully, updateCategory, updateCategorySuccesfully } from '../actions/category.actions';
+import { getCategories, getCategoriesSuccesfully, updateCategory, updateCategorySuccesfully, addCategory, addCategorySuccesfully } from '../actions/category.actions';
 import { Category } from '../models/Category';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { of } from 'rxjs';
@@ -20,6 +20,19 @@ export class CategoryEffects {
         (res : Array<Category>) => getCategoriesSuccesfully({payload: res}),
         catchError((err : HttpErrorResponse)=> this.toast.error(err.statusText, "Error"))
     )))));
+
+  addCategory = 
+    createEffect(() => this.actions.pipe(
+    ofType(addCategory),
+    map((action : any) => action.payload),
+    switchMap(payload => this.dataService.addCategory(payload)),
+    switchMap((res : Category) => [
+      addCategorySuccesfully({payload: res}),
+      toastSuccessNotification({header: "You have added " + res.title, body: "Success"})
+    ]),
+    catchError((err : HttpErrorResponse) => of(toastErrorNotification({header: "Error", body: err.statusText})))
+    ));
+
 
   updateCategory = 
     createEffect(() => this.actions.pipe(

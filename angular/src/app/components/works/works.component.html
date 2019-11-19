@@ -19,6 +19,7 @@
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
                 <button mdbBtn type="button" color="default" size="lg" class="waves-light" mdbWavesEffect (click)="togglePreviewMode()"> Preview {{(isPreviewMode$ | async) ? " On" : " Off"}}</button>
                 <app-add-work-modal></app-add-work-modal>
+                <app-add-category-modal></app-add-category-modal>
             </div>
         </div>
     </div>

@@ -34,6 +34,7 @@ import { WorkInstanceDisplaymodeComponent } from './components/work-instance-dis
 import { WorkInstanceEditmodeComponent } from './components/work-instance-editmode/work-instance-editmode.component';
 import { CategoryEditmodeComponent } from './components/category-editmode/category-editmode.component';
 import { CategoryDisplaymodeComponent } from './components/category-displaymode/category-displaymode.component';
+import { AddCategoryModalComponent } from './components/add-category-modal/add-category-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CategoryDisplaymodeComponent } from './components/category-displaymode/
     WorkInstanceDisplaymodeComponent,
     WorkInstanceEditmodeComponent,
     CategoryEditmodeComponent,
-    CategoryDisplaymodeComponent
+    CategoryDisplaymodeComponent,
+    AddCategoryModalComponent
   ],
   imports: [
     BrowserModule,

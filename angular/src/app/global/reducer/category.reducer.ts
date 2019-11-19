@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Category } from '../models/Category';
-import { getCategoriesSuccesfully, categoryChanged } from '../actions/category.actions';
+import { getCategoriesSuccesfully, categoryChanged, addCategorySuccesfully } from '../actions/category.actions';
 
 interface State{
     categories: Array<Category>
@@ -13,6 +13,7 @@ interface State{
   const _categoryReducer = createReducer(
     initialState,
     on(getCategoriesSuccesfully, (state,action) => {return {...state, categories: action.payload }}),
+    on(addCategorySuccesfully, (state, action) => {return {...state, categories: [...state.categories, action.payload]}}),
     on(categoryChanged, (state, action) => updateCategory(state, action))
   );
   
