@@ -3,12 +3,12 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { DataService } from '../services/data.service';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getCategories, getCategoriesSuccesfully, updateCategory, updateCategorySuccesfully, addCategory, addCategorySuccesfully, deleteCategory } from '../actions/category.actions';
+import { getCategories, getCategoriesSuccesfully, updateCategory, updateCategorySuccesfully, addCategory, addCategorySuccesfully, deleteCategory, deleteCategorySuccesfully } from '../actions/category.actions';
 import { Category } from '../models/Category';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { of } from 'rxjs';
 import { toastSuccessNotification, toastErrorNotification } from '../actions/toast.actions';
-import { deleteWorksSuccesfully } from '../actions/works.actions';
+import { deleteWorksSuccesfully, removeCategoryFromWorks } from '../actions/works.actions';
 
 @Injectable()
 export class CategoryEffects {
@@ -54,7 +54,8 @@ export class CategoryEffects {
     map((action : any) => action.payload),
     switchMap(payload => this.dataService.deleteCategory(payload)),
     switchMap((res : Category) => [
-      deleteWorksSuccesfully({payload: res}),
+      deleteCategorySuccesfully({payload: res}),
+      removeCategoryFromWorks({payload: res}),
       toastSuccessNotification({header: "You have deleted " + res.title, body: "Success"})
     ]),
     catchError((err : HttpErrorResponse) => of(toastErrorNotification({header: "Error", body: err.statusText})))

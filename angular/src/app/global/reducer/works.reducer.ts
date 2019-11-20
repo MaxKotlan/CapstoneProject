@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Work } from '../models/Work';
-import { getWorksSuccesfully, filterWorks, addWorksSuccesfully, deleteWorksSuccesfully, deleteWorks, updateWorksSuccesfully } from '../actions/works.actions';
+import { getWorksSuccesfully, filterWorks, addWorksSuccesfully, deleteWorksSuccesfully, updateWorksSuccesfully, removeCategoryFromWorks } from '../actions/works.actions';
+import { Category } from '../models/Category';
 
 interface State{
   allWorks: Array<Work>,
@@ -21,7 +22,22 @@ const _worksReducer = createReducer(
   on(deleteWorksSuccesfully, (state,action) => deleteWork(state, action)),
   on(updateWorksSuccesfully, (state,action) => updateWork(state, action)),
   on(filterWorks, (state, action) => generateFilterState(state, action.payload)),
+  on(removeCategoryFromWorks, (state, action) => removeCategory(state, action))
 );
+
+function removeCategory(state, action){
+
+  /*Sets all works whose category id is equal to the actions payload to null*/
+  let worksChanged = state.allWorks.map((work : Work) => 
+    (work.category === action.payload.id) ?
+     {...work, category: null} :
+     work                        
+  );
+
+  let changedAll = {...state, allWorks: worksChanged};
+  let changedAndFiltered = generateFilterState(changedAll, state.searchText);
+  return changedAndFiltered;
+}
 
 function addWork(state, action){
   let justAdded =  {...state, allWorks: [...state.allWorks, action.payload] }

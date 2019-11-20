@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Work } from '../models/Work';
+import { Category } from '../models/Category';
 
 export  const getWorks = createAction('[Work] getWorks');
 export  const getWorksSuccesfully = createAction('[Work] getWorksSuccesfully', props<{ payload:  Array<Work>; }>());
@@ -14,3 +15,4 @@ export  const deleteWorks = createAction('[Work] deleteWorks', props<{ payload: 
 export  const deleteWorksSuccesfully = createAction('[Work] deleteWorksSuccesfully', props<{ payload:  Work; }>());
 
 export  const filterWorks = createAction('[Work] filterWorks', props<{ payload:  string; }>());
+export  const removeCategoryFromWorks = createAction('[Work] removeCategoryFromWorks', props<{ payload:  Category; }>());
