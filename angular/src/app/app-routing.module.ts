@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TextPostsComponent } from './components/text-posts/text-posts.component';
 import { WorksComponent } from './components/works/works.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/admin/register/register.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 

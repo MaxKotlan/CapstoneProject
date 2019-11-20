@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../../global/services/login.service';
+import { LoginService } from '../../../global/services/login.service';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Login } from 'src/app/global/models/Login';
