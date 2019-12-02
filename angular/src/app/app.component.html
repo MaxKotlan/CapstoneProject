@@ -1,4 +1,4 @@
-<div *ngIf="!(isLoggedIn$ | async) && (maintenanceModeActivated$ | async); else maintenanceDisabled">
+<div *ngIf="!(isLoggedIn$ | async) && (maintenanceModeActivated$ | async) && (router.url != '/admin'); else maintenanceDisabled">
     <app-maintenance-activated></app-maintenance-activated>
 </div>
 <ng-template #maintenanceDisabled>

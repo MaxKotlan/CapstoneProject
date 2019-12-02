@@ -9,6 +9,7 @@ import { getText } from './global/actions/text.actions';
 import { getWorks } from './global/actions/works.actions';
 import { getCategories } from './global/actions/category.actions';
 import { getMaintenanceStatus } from './global/actions/maintenance.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
   constructor(
     private loginService : LoginService,
     private store: Store<any>,
-    private toast : ToastService
+    private toast : ToastService,
+    private router : Router
   ){}
 
   title = 'Kenneth E. Batcher';
