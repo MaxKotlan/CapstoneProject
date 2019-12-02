@@ -35,6 +35,10 @@ import { WorkInstanceEditmodeComponent } from './components/works/work-instance-
 import { CategoryEditmodeComponent } from './components/works/category-editmode/category-editmode.component';
 import { CategoryDisplaymodeComponent } from './components/works/category-displaymode/category-displaymode.component';
 import { AddCategoryModalComponent } from './components/works/add-category-modal/add-category-modal.component';
+import { MaintenenceEffects } from './global/effects/maintenance.effects';
+import { MaintenanceReducer } from './global/reducer/maintenance.reducer';
+import { ToggleMaintenanceModeComponent } from './components/admin/toggle-maintenance-mode/toggle-maintenance-mode.component';
+import { MaintenanceActivatedComponent } from './components/maintenance-activated/maintenance-activated.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,9 @@ import { AddCategoryModalComponent } from './components/works/add-category-modal
     WorkInstanceEditmodeComponent,
     CategoryEditmodeComponent,
     CategoryDisplaymodeComponent,
-    AddCategoryModalComponent
+    AddCategoryModalComponent,
+    ToggleMaintenanceModeComponent,
+    MaintenanceActivatedComponent
   ],
   imports: [
     BrowserModule,
@@ -61,8 +67,23 @@ import { AddCategoryModalComponent } from './components/works/add-category-modal
     AppRoutingModule,
     FormsModule,
     MDBBootstrapModulesPro.forRoot(),
-    StoreModule.forRoot({ isLoggedIn: isLoggedInReducer, works: WorksReducer, previewMode: previewMode, category: CategoryReducer, textposts: TextReducer}),
-    EffectsModule.forRoot([WorksEffects, CategoryEffects, TextEffects, ToastEffects]),
+
+    StoreModule.forRoot({ 
+      isLoggedIn: isLoggedInReducer, 
+      works: WorksReducer, 
+      previewMode: previewMode, 
+      category: CategoryReducer,
+      textposts: TextReducer,
+      maintenance: MaintenanceReducer
+    }),
+
+    EffectsModule.forRoot([
+      WorksEffects, 
+      CategoryEffects, 
+      TextEffects, 
+      ToastEffects,
+      MaintenenceEffects
+    ]),
     ToastModule.forRoot(),
     QuillModule.forRoot()
   ],

@@ -61,8 +61,6 @@ export class CategoryEffects {
     catchError((err : HttpErrorResponse) => of(toastErrorNotification({header: "Error", body: err.statusText})))
     ));
 
-
-
   constructor(
     private dataService : DataService,
     private actions: Actions,

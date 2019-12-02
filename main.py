@@ -10,6 +10,7 @@ from api.text  import text
 from api.login import login
 from api.work  import work
 from api.category import category
+from api.maintenance import maintenance
 
 import mimetypes
 mimetypes.add_type('text/css', '.css')
@@ -21,6 +22,7 @@ app.register_blueprint(text,  url_prefix='/api')
 app.register_blueprint(login, url_prefix='/api')
 app.register_blueprint(work,  url_prefix='/api')
 app.register_blueprint(category, url_prefix='/api')
+app.register_blueprint(maintenance, url_prefix='/api')
 
 
 CORS(app, support_credentials=True)
