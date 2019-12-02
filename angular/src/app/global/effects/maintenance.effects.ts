@@ -27,7 +27,7 @@ export class MaintenenceEffects {
   switchMap((payload) => this.dataService.toggleMaintenanceMode()),
   switchMap((res : boolean) => [
     toggleMaintenanceSuccesfully({payload: res}),
-    toastSuccessNotification({header: "You have enabled Maintenance Mode", body: "Success"})
+    toastSuccessNotification({header: "You have " + (res ? "enabled" : "disabled" ) + " Maintenance Mode", body: "Success"})
   ]),
   catchError((err : HttpErrorResponse) => of(toastErrorNotification({header: "Error", body: "Could not toggle maintenence mode"})))
   ));

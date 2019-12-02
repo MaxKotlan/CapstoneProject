@@ -37,6 +37,7 @@ import { CategoryDisplaymodeComponent } from './components/works/category-displa
 import { AddCategoryModalComponent } from './components/works/add-category-modal/add-category-modal.component';
 import { MaintenenceEffects } from './global/effects/maintenance.effects';
 import { MaintenanceReducer } from './global/reducer/maintenance.reducer';
+import { ToggleMaintenanceModeComponent } from './components/admin/toggle-maintenance-mode/toggle-maintenance-mode.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { MaintenanceReducer } from './global/reducer/maintenance.reducer';
     WorkInstanceEditmodeComponent,
     CategoryEditmodeComponent,
     CategoryDisplaymodeComponent,
-    AddCategoryModalComponent
+    AddCategoryModalComponent,
+    ToggleMaintenanceModeComponent
   ],
   imports: [
     BrowserModule,

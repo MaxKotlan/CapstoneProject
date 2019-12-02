@@ -89,13 +89,13 @@ export class DataService {
 
   public getMaintenanceStatus() : Observable<Boolean>{
     const options = this.httpOptions();
-    var completeUrl : string = this.controllerUrl + "maintenancemode";
+    var completeUrl : string = this.controllerUrl + "maintenance";
     return this.http.get<boolean>(completeUrl, options);
   }
 
   public toggleMaintenanceMode() : Observable<Boolean>{
     const options = this.httpOptions();
-    var completeUrl : string = this.controllerUrl + "maintenancemode";
+    var completeUrl : string = this.controllerUrl + "maintenance";
     return this.http.post<boolean>(completeUrl, options);
   }
 
