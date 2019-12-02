@@ -1,30 +1,36 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg grey lighten-5 grey-text py-3" [containerInside]="false">
-        <mdb-navbar-brand><a class="navbar-brand grey-text">{{title}}</a></mdb-navbar-brand>
-        <links>
-            <ul class="navbar-nav mr-auto">
-                <li *ngFor="let link of links" 
-                class="nav-item"><a class="nav-link waves-light" [routerLink]="[link.route]" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{ exact: true }" mdbWavesEffect> 
-                        <mdb-icon fas icon="{{link.icon}}"></mdb-icon>
-                        {{link.title}}</a></li>
-            </ul>
-            <ul *ngIf="isLoggedIn$ | async" class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link waves-light" [routerLink]="['/admin']" [routerLinkActive]="['is-active']" mdbWavesEffect>
-                        <mdb-icon fas icon="users-cog"></mdb-icon>Admin
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link waves-light" (click)="logout()" mdbWavesEffect>
-                        <mdb-icon fas icon="sign-out-alt"></mdb-icon>Logout
-                    </a>
-                </li>
-            </ul>
+<div *ngIf="!(isLoggedIn$ | async) && (maintenanceModeActivated$ | async); else maintenanceDisabled">
+    <app-maintenance-activated></app-maintenance-activated>
+</div>
+<ng-template #maintenanceDisabled>
+    <mdb-navbar SideClass="navbar navbar-expand-lg grey lighten-5 grey-text py-3" [containerInside]="false">
+            <mdb-navbar-brand><a class="navbar-brand grey-text">{{title}}</a></mdb-navbar-brand>
+            <links>
+                <ul class="navbar-nav mr-auto">
+                    <li *ngFor="let link of links" 
+                    class="nav-item"><a class="nav-link waves-light" [routerLink]="[link.route]" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{ exact: true }" mdbWavesEffect> 
+                            <mdb-icon fas icon="{{link.icon}}"></mdb-icon>
+                            {{link.title}}</a></li>
+                </ul>
+                <ul *ngIf="isLoggedIn$ | async" class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" [routerLink]="['/admin']" [routerLinkActive]="['is-active']" mdbWavesEffect>
+                            <mdb-icon fas icon="users-cog"></mdb-icon>Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" (click)="logout()" mdbWavesEffect>
+                            <mdb-icon fas icon="sign-out-alt"></mdb-icon>Logout
+                        </a>
+                    </li>
+                </ul>
 
-        </links>
-</mdb-navbar>
+            </links>
+    </mdb-navbar>
 
-<br>
+    <br>
 
-<main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
-    <router-outlet #o="outlet"></router-outlet>
-</main>
+    <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+        <router-outlet #o="outlet"></router-outlet>
+    </main>
+
+</ng-template>

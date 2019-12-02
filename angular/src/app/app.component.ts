@@ -20,7 +20,7 @@ export class AppComponent {
 
   constructor(
     private loginService : LoginService,
-    private store: Store<{ isLoggedIn : boolean }>,
+    private store: Store<any>,
     private toast : ToastService
   ){}
 
@@ -32,6 +32,8 @@ export class AppComponent {
   ]
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn')); 
+  maintenanceModeActivated$ : Observable<boolean> = this.store.pipe(select('maintenance')).pipe(select("maintenanceModeEnabled")); 
+
 
   public logout() : void{
     this.loginService.logout().toPromise().then(
