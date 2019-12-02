@@ -14,6 +14,7 @@ def getStatus():
         return "false"
 
 @maintenance.route("/maintenance", methods=["POST"])
+@login_required
 def toggleMaintenance():
     global maintenanceStatus
     maintenanceStatus = not maintenanceStatus
