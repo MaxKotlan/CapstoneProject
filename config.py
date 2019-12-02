@@ -3,3 +3,5 @@ EMAIL="drkenbatchermemorial.dev@gmail.com"
 EMAIL_PASSWORD="developmentpassword"
 DEBUG=True
 SECRET_KEY='hack me'
+ADMIN_EMAIL="Admin"
+ADMIN_PASSWORD="password"

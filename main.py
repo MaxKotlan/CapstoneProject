@@ -47,6 +47,8 @@ def angular(path):
 
 if __name__ == "__main__":
     with db_session:
-        if Text.select().first() is None:
-            populate_database()
+        if app.config.get("POPULATE_DATABASE", False):
+            populate_database(app.config)
+        if app.config.get("RESET_USERS", False):
+            reset_users(app.config)
     app.run()
