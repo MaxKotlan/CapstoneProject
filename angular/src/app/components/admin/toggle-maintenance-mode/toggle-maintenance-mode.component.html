@@ -1,2 +1,3 @@
 <button mdbBtn color="primary" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
-type="submit" (click)="toggleMaintenanceMode()">Maintenance Mode</button>
+type="submit" (click)="toggleMaintenanceMode()">Maintenance Mode {{ (maintenanceModeActivated$ | async) ? ' Off' : ' On'}}</button>
+<h5 class="text-center">(Maintenance Mode is currently {{ (maintenanceModeActivated$ | async) ? ' On' : ' Off'}} )</h5>

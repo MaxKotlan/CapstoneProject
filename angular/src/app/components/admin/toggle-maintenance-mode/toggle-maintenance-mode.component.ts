@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { toggleMaintenance } from 'src/app/global/actions/maintenance.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toggle-maintenance-mode',
@@ -10,6 +11,9 @@ import { toggleMaintenance } from 'src/app/global/actions/maintenance.actions';
 export class ToggleMaintenanceModeComponent {
 
   constructor(private store : Store<any>) { }
+
+  maintenanceModeActivated$ : Observable<boolean> = this.store.pipe(select('maintenance')).pipe(select("maintenanceModeEnabled")); 
+
 
   toggleMaintenanceMode(){
     this.store.dispatch(toggleMaintenance());
