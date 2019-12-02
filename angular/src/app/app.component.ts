@@ -23,7 +23,7 @@ export class AppComponent {
     private loginService : LoginService,
     private store: Store<any>,
     private toast : ToastService,
-    private router : Router
+    public router : Router
   ){}
 
   title = 'Kenneth E. Batcher';
@@ -35,7 +35,6 @@ export class AppComponent {
 
   isLoggedIn$ : Observable<boolean> = this.store.pipe(select('isLoggedIn')); 
   maintenanceModeActivated$ : Observable<boolean> = this.store.pipe(select('maintenance')).pipe(select("maintenanceModeEnabled")); 
-
 
   public logout() : void{
     this.loginService.logout().toPromise().then(
