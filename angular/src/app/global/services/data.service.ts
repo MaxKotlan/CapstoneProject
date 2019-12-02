@@ -87,6 +87,18 @@ export class DataService {
     return this.http.delete<Category>(completeUrl, options);
   }
 
+  public getMaintenanceStatus() : Observable<Boolean>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "maintenancemode";
+    return this.http.get<boolean>(completeUrl, options);
+  }
+
+  public toggleMaintenanceMode() : Observable<Boolean>{
+    const options = this.httpOptions();
+    var completeUrl : string = this.controllerUrl + "maintenancemode";
+    return this.http.post<boolean>(completeUrl, options);
+  }
+
   private httpOptions() {
     return {
         headers: new HttpHeaders({

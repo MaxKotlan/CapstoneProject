@@ -8,6 +8,7 @@ import { isLoggedInSuccesfully, isLoggedOutSuccesfully } from './global/actions/
 import { getText } from './global/actions/text.actions';
 import { getWorks } from './global/actions/works.actions';
 import { getCategories } from './global/actions/category.actions';
+import { getMaintenanceStatus } from './global/actions/maintenance.actions';
 
 @Component({
   selector: 'app-root',
@@ -51,6 +52,7 @@ export class AppComponent {
 
   /*Pulls in data from all apis on inital load. Saves between page switching this way*/
   public loadDataIntoApp(){
+    this.store.dispatch(getMaintenanceStatus());
     this.store.dispatch(getText());
     this.store.dispatch(getWorks());
     this.store.dispatch(getCategories());
